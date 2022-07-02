@@ -32,10 +32,10 @@
             this.txtSerialNumberValue = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.pnlResults = new System.Windows.Forms.Panel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.lblResultNum = new System.Windows.Forms.Label();
             this.pnlSelection = new System.Windows.Forms.Panel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.pnlResults.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,7 +43,7 @@
             // 
             this.lblSerialNumberHeader.AutoSize = true;
             this.lblSerialNumberHeader.Font = new System.Drawing.Font("Book Antiqua", 10F, System.Drawing.FontStyle.Bold);
-            this.lblSerialNumberHeader.Location = new System.Drawing.Point(18, 13);
+            this.lblSerialNumberHeader.Location = new System.Drawing.Point(16, 13);
             this.lblSerialNumberHeader.Name = "lblSerialNumberHeader";
             this.lblSerialNumberHeader.Size = new System.Drawing.Size(107, 19);
             this.lblSerialNumberHeader.TabIndex = 0;
@@ -52,7 +52,7 @@
             // txtSerialNumberValue
             // 
             this.txtSerialNumberValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtSerialNumberValue.Location = new System.Drawing.Point(131, 12);
+            this.txtSerialNumberValue.Location = new System.Drawing.Point(129, 12);
             this.txtSerialNumberValue.Name = "txtSerialNumberValue";
             this.txtSerialNumberValue.Size = new System.Drawing.Size(100, 23);
             this.txtSerialNumberValue.TabIndex = 1;
@@ -60,7 +60,7 @@
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnSearch.Location = new System.Drawing.Point(237, 11);
+            this.btnSearch.Location = new System.Drawing.Point(235, 11);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 25);
             this.btnSearch.TabIndex = 2;
@@ -72,7 +72,7 @@
             // 
             this.pnlResults.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pnlResults.AutoScroll = true;
-            this.pnlResults.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlResults.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlResults.Controls.Add(this.linkLabel2);
             this.pnlResults.Controls.Add(this.linkLabel1);
             this.pnlResults.Controls.Add(this.lblResultNum);
@@ -81,23 +81,16 @@
             this.pnlResults.Size = new System.Drawing.Size(307, 390);
             this.pnlResults.TabIndex = 0;
             // 
-            // lblResultNum
+            // linkLabel2
             // 
-            this.lblResultNum.AutoSize = true;
-            this.lblResultNum.Font = new System.Drawing.Font("Book Antiqua", 10F, System.Drawing.FontStyle.Bold);
-            this.lblResultNum.Location = new System.Drawing.Point(2, 0);
-            this.lblResultNum.Name = "lblResultNum";
-            this.lblResultNum.Size = new System.Drawing.Size(110, 19);
-            this.lblResultNum.TabIndex = 0;
-            this.lblResultNum.Text = "0 Test(s) Found";
-            // 
-            // pnlSelection
-            // 
-            this.pnlSelection.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlSelection.Location = new System.Drawing.Point(325, 11);
-            this.pnlSelection.Name = "pnlSelection";
-            this.pnlSelection.Size = new System.Drawing.Size(463, 427);
-            this.pnlSelection.TabIndex = 3;
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.linkLabel2.Location = new System.Drawing.Point(3, 36);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(144, 17);
+            this.linkLabel2.TabIndex = 5;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "11/11/2022 11:11 PM";
             // 
             // linkLabel1
             // 
@@ -110,16 +103,22 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "11/11/2022 11:11 PM";
             // 
-            // linkLabel2
+            // lblResultNum
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.linkLabel2.Location = new System.Drawing.Point(3, 36);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(144, 17);
-            this.linkLabel2.TabIndex = 5;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "11/11/2022 11:11 PM";
+            this.lblResultNum.AutoSize = true;
+            this.lblResultNum.Font = new System.Drawing.Font("Book Antiqua", 10F, System.Drawing.FontStyle.Bold);
+            this.lblResultNum.Location = new System.Drawing.Point(2, 0);
+            this.lblResultNum.Name = "lblResultNum";
+            this.lblResultNum.Size = new System.Drawing.Size(0, 19);
+            this.lblResultNum.TabIndex = 0;
+            // 
+            // pnlSelection
+            // 
+            this.pnlSelection.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSelection.Location = new System.Drawing.Point(325, 11);
+            this.pnlSelection.Name = "pnlSelection";
+            this.pnlSelection.Size = new System.Drawing.Size(463, 427);
+            this.pnlSelection.TabIndex = 3;
             // 
             // formGenasysTestViewer
             // 
