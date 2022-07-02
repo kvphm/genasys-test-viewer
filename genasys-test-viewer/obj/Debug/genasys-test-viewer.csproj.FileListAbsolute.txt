@@ -9,3 +9,14 @@ Z:\Kevin Pham\genasys-test-viewer\genasys-test-viewer\obj\Debug\genasys-test-vie
 Z:\Kevin Pham\genasys-test-viewer\genasys-test-viewer\obj\Debug\genasys-test-viewer.csproj.CoreCompileInputs.cache
 Z:\Kevin Pham\genasys-test-viewer\genasys-test-viewer\obj\Debug\genasys-test-viewer.exe
 Z:\Kevin Pham\genasys-test-viewer\genasys-test-viewer\obj\Debug\genasys-test-viewer.pdb
+C:\Users\KEVIN PHAM\Documents\GitHub\genasys-test-viewer\genasys-test-viewer\bin\Debug\genasys-test-viewer.exe.config
+C:\Users\KEVIN PHAM\Documents\GitHub\genasys-test-viewer\genasys-test-viewer\bin\Debug\genasys-test-viewer.exe
+C:\Users\KEVIN PHAM\Documents\GitHub\genasys-test-viewer\genasys-test-viewer\bin\Debug\genasys-test-viewer.pdb
+C:\Users\KEVIN PHAM\Documents\GitHub\genasys-test-viewer\genasys-test-viewer\obj\Debug\genasys-test-viewer.csproj.AssemblyReference.cache
+C:\Users\KEVIN PHAM\Documents\GitHub\genasys-test-viewer\genasys-test-viewer\obj\Debug\genasys-test-viewer.csproj.SuggestedBindingRedirects.cache
+C:\Users\KEVIN PHAM\Documents\GitHub\genasys-test-viewer\genasys-test-viewer\obj\Debug\genasys_test_viewer.formGenasysTestViewer.resources
+C:\Users\KEVIN PHAM\Documents\GitHub\genasys-test-viewer\genasys-test-viewer\obj\Debug\genasys_test_viewer.Properties.Resources.resources
+C:\Users\KEVIN PHAM\Documents\GitHub\genasys-test-viewer\genasys-test-viewer\obj\Debug\genasys-test-viewer.csproj.GenerateResource.cache
+C:\Users\KEVIN PHAM\Documents\GitHub\genasys-test-viewer\genasys-test-viewer\obj\Debug\genasys-test-viewer.csproj.CoreCompileInputs.cache
+C:\Users\KEVIN PHAM\Documents\GitHub\genasys-test-viewer\genasys-test-viewer\obj\Debug\genasys-test-viewer.exe
+C:\Users\KEVIN PHAM\Documents\GitHub\genasys-test-viewer\genasys-test-viewer\obj\Debug\genasys-test-viewer.pdb

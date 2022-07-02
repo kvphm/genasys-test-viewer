@@ -34,16 +34,14 @@
             this.pnlResults = new System.Windows.Forms.Panel();
             this.lblResultNum = new System.Windows.Forms.Label();
             this.pnlSelection = new System.Windows.Forms.Panel();
-            this.lblSelectedTitle = new System.Windows.Forms.Label();
             this.pnlResults.SuspendLayout();
-            this.pnlSelection.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSerialNumberHeader
             // 
             this.lblSerialNumberHeader.AutoSize = true;
             this.lblSerialNumberHeader.Font = new System.Drawing.Font("Book Antiqua", 10F, System.Drawing.FontStyle.Bold);
-            this.lblSerialNumberHeader.Location = new System.Drawing.Point(238, 13);
+            this.lblSerialNumberHeader.Location = new System.Drawing.Point(18, 13);
             this.lblSerialNumberHeader.Name = "lblSerialNumberHeader";
             this.lblSerialNumberHeader.Size = new System.Drawing.Size(107, 19);
             this.lblSerialNumberHeader.TabIndex = 0;
@@ -52,7 +50,7 @@
             // txtSerialNumberValue
             // 
             this.txtSerialNumberValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtSerialNumberValue.Location = new System.Drawing.Point(351, 12);
+            this.txtSerialNumberValue.Location = new System.Drawing.Point(131, 12);
             this.txtSerialNumberValue.Name = "txtSerialNumberValue";
             this.txtSerialNumberValue.Size = new System.Drawing.Size(100, 23);
             this.txtSerialNumberValue.TabIndex = 1;
@@ -60,7 +58,7 @@
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnSearch.Location = new System.Drawing.Point(457, 11);
+            this.btnSearch.Location = new System.Drawing.Point(237, 11);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 25);
             this.btnSearch.TabIndex = 2;
@@ -76,9 +74,8 @@
             this.pnlResults.Controls.Add(this.lblResultNum);
             this.pnlResults.Location = new System.Drawing.Point(12, 48);
             this.pnlResults.Name = "pnlResults";
-            this.pnlResults.Size = new System.Drawing.Size(171, 390);
+            this.pnlResults.Size = new System.Drawing.Size(307, 390);
             this.pnlResults.TabIndex = 0;
-            this.pnlResults.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlResults_Paint);
             // 
             // lblResultNum
             // 
@@ -92,22 +89,10 @@
             // pnlSelection
             // 
             this.pnlSelection.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlSelection.Controls.Add(this.lblSelectedTitle);
-            this.pnlSelection.Location = new System.Drawing.Point(189, 48);
+            this.pnlSelection.Location = new System.Drawing.Point(325, 11);
             this.pnlSelection.Name = "pnlSelection";
-            this.pnlSelection.Size = new System.Drawing.Size(599, 390);
+            this.pnlSelection.Size = new System.Drawing.Size(463, 427);
             this.pnlSelection.TabIndex = 3;
-            // 
-            // lblSelectedTitle
-            // 
-            this.lblSelectedTitle.AutoSize = true;
-            this.lblSelectedTitle.Font = new System.Drawing.Font("Book Antiqua", 10F, System.Drawing.FontStyle.Bold);
-            this.lblSelectedTitle.Location = new System.Drawing.Point(3, 0);
-            this.lblSelectedTitle.Name = "lblSelectedTitle";
-            this.lblSelectedTitle.Size = new System.Drawing.Size(48, 19);
-            this.lblSelectedTitle.TabIndex = 0;
-            this.lblSelectedTitle.Text = "label1";
-            this.lblSelectedTitle.Click += new System.EventHandler(this.label1_Click);
             // 
             // formGenasysTestViewer
             // 
@@ -119,12 +104,11 @@
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSerialNumberValue);
             this.Controls.Add(this.lblSerialNumberHeader);
+            this.MaximizeBox = false;
             this.Name = "formGenasysTestViewer";
             this.Text = "GENASYS Test Viewer";
             this.pnlResults.ResumeLayout(false);
             this.pnlResults.PerformLayout();
-            this.pnlSelection.ResumeLayout(false);
-            this.pnlSelection.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,7 +122,6 @@
         private System.Windows.Forms.Panel pnlResults;
         private System.Windows.Forms.Label lblResultNum;
         private System.Windows.Forms.Panel pnlSelection;
-        private System.Windows.Forms.Label lblSelectedTitle;
     }
 }
 

@@ -21,13 +21,14 @@ namespace genasys_test_viewer
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string serialNum = this.txtSerialNumberValue.Text;
+            List<List<string>> allSnTests = GetAllTestsFromSn(serialNum);
+            int allSnTestsSize = allSnTests.Count;
             if (serialNum.Trim() == "")
             {
                 Reinitialize();
                 return;
             }
-            List<List<string>> alltestsFromSn = GetAllTestsFromSn(serialNum);
-            this.lblResultNum.Text = alltestsFromSn.Count + Constants.LBL_TESTS_FOUND;
+            this.lblResultNum.Text = allSnTestsSize + Constants.LBL_TESTS_FOUND;
             
         }
 
@@ -50,25 +51,20 @@ namespace genasys_test_viewer
             }
             return alltestsFromSn;
         }
-
-        private int GetColNum(string headerName)
-        {
-            return File.ReadLines(Constants.PATH).First().IndexOf(headerName);
-        }
-
         private void Reinitialize()
         {
             // TODO
         }
 
-        private void pnlResults_Paint(object sender, PaintEventArgs e)
+        private int GetColNum(string headerName)
         {
-
+            int colNum = File.ReadLines(Constants.PATH).First().IndexOf(headerName);
+            if (colNum == -1)
+            {
+                throw new System.IO.FileFormatException(headerName + Constants.ERR_1);
+            }
+            return colNum;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
