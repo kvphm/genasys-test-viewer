@@ -11,9 +11,14 @@ namespace genasys_test_viewer
         // Path of the CSV file.
         public const string PATH = "C:\\Users\\KEVIN PHAM\\Documents\\GitHub\\genasys-test-viewer\\test file.csv";
 
-        public const string CHT_HEADER_UNIT_SN = "Unit SN";
-        public const string LBL_TESTS_FOUND = " Test(s) Found:";
-
+        // Error messages.
         public const string ERR_1 = " column cannot be found";
+
+        // Miscellaneous constants.
+        public const string CHT_HEADER_UNIT_SN = "Unit SN";
+        public const string LBL_TESTS_FOUND = " test(s) found";
+        public const int INIT_LOC_TIME_X = 3;
+        public const int INIT_LOC_TIME_Y = 19;
+        public const int SEARCH_SPACING = 17;
     }
 }
