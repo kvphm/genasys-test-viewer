@@ -99,8 +99,13 @@ namespace genasys_test_viewer
                     }
                 }
             }
+            alltestsFromSn.Reverse();
             return alltestsFromSn;
         }
 
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
