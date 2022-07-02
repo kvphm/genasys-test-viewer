@@ -32,8 +32,6 @@
             this.txtSerialNumberValue = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.pnlResults = new System.Windows.Forms.Panel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.lblResultNum = new System.Windows.Forms.Label();
             this.pnlSelection = new System.Windows.Forms.Panel();
             this.pnlResults.SuspendLayout();
@@ -73,35 +71,11 @@
             this.pnlResults.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pnlResults.AutoScroll = true;
             this.pnlResults.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlResults.Controls.Add(this.linkLabel2);
-            this.pnlResults.Controls.Add(this.linkLabel1);
             this.pnlResults.Controls.Add(this.lblResultNum);
             this.pnlResults.Location = new System.Drawing.Point(12, 48);
             this.pnlResults.Name = "pnlResults";
             this.pnlResults.Size = new System.Drawing.Size(307, 390);
             this.pnlResults.TabIndex = 0;
-            // 
-            // linkLabel2
-            // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.linkLabel2.Location = new System.Drawing.Point(3, 36);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(144, 17);
-            this.linkLabel2.TabIndex = 5;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "11/11/2022 11:11 PM";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.linkLabel1.Location = new System.Drawing.Point(3, 19);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(144, 17);
-            this.linkLabel1.TabIndex = 4;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "11/11/2022 11:11 PM";
             // 
             // lblResultNum
             // 
@@ -148,8 +122,6 @@
         private System.Windows.Forms.Panel pnlResults;
         private System.Windows.Forms.Label lblResultNum;
         private System.Windows.Forms.Panel pnlSelection;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 
