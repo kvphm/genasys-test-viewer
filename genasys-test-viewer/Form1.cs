@@ -29,7 +29,7 @@ namespace genasys_test_viewer
                 return;
             }
             this.lblResultNum.Text = allSnTestsSize + Constants.LBL_TESTS_FOUND;
-            
+
         }
 
         private List<List<string>> GetAllTestsFromSn(string serialNum)
