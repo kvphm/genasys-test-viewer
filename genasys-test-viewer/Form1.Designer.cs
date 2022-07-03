@@ -29,18 +29,28 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formGenasysTestViewer));
-            this.lblUnitSnHeader = new System.Windows.Forms.Label();
-            this.pnlResults = new System.Windows.Forms.Panel();
-            this.lblResultNum = new System.Windows.Forms.Label();
-            this.pnlSelection = new System.Windows.Forms.Panel();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.txtUnitSnValue = new System.Windows.Forms.TextBox();
+            this.lblUnitSnHeader = new System.Windows.Forms.Label();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.lblResultNum = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.pnlResults.SuspendLayout();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnResize = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // txtUnitSnValue
+            // 
+            this.txtUnitSnValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtUnitSnValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.txtUnitSnValue.Location = new System.Drawing.Point(165, 97);
+            this.txtUnitSnValue.Name = "txtUnitSnValue";
+            this.txtUnitSnValue.Size = new System.Drawing.Size(173, 32);
+            this.txtUnitSnValue.TabIndex = 1;
             // 
             // lblUnitSnHeader
             // 
@@ -49,52 +59,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUnitSnHeader.AutoSize = true;
             this.lblUnitSnHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
-            this.lblUnitSnHeader.Location = new System.Drawing.Point(7, 112);
+            this.lblUnitSnHeader.Location = new System.Drawing.Point(5, 100);
             this.lblUnitSnHeader.Name = "lblUnitSnHeader";
             this.lblUnitSnHeader.Size = new System.Drawing.Size(162, 26);
             this.lblUnitSnHeader.TabIndex = 0;
             this.lblUnitSnHeader.Text = "Enter unit SN:";
             // 
-            // pnlResults
-            // 
-            this.pnlResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.pnlResults.AutoScroll = true;
-            this.pnlResults.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlResults.Controls.Add(this.linkLabel2);
-            this.pnlResults.Controls.Add(this.linkLabel1);
-            this.pnlResults.Controls.Add(this.lblResultNum);
-            this.pnlResults.Location = new System.Drawing.Point(12, 147);
-            this.pnlResults.Name = "pnlResults";
-            this.pnlResults.Size = new System.Drawing.Size(363, 202);
-            this.pnlResults.TabIndex = 0;
-            // 
-            // lblResultNum
-            // 
-            this.lblResultNum.AutoSize = true;
-            this.lblResultNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
-            this.lblResultNum.Location = new System.Drawing.Point(-1, -1);
-            this.lblResultNum.Name = "lblResultNum";
-            this.lblResultNum.Size = new System.Drawing.Size(165, 26);
-            this.lblResultNum.TabIndex = 0;
-            this.lblResultNum.Text = "0 test(s) found";
-            // 
-            // pnlSelection
-            // 
-            this.pnlSelection.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlSelection.AutoScroll = true;
-            this.pnlSelection.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlSelection.Location = new System.Drawing.Point(381, 12);
-            this.pnlSelection.Name = "pnlSelection";
-            this.pnlSelection.Size = new System.Drawing.Size(391, 337);
-            this.pnlSelection.TabIndex = 3;
-            // 
             // btnSearch
             // 
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnSearch.Location = new System.Drawing.Point(300, 113);
+            this.btnSearch.Location = new System.Drawing.Point(344, 100);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 25);
             this.btnSearch.TabIndex = 2;
@@ -102,72 +77,83 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // txtUnitSnValue
+            // lblResultNum
             // 
-            this.txtUnitSnValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtUnitSnValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.txtUnitSnValue.Location = new System.Drawing.Point(166, 109);
-            this.txtUnitSnValue.Name = "txtUnitSnValue";
-            this.txtUnitSnValue.Size = new System.Drawing.Size(128, 32);
-            this.txtUnitSnValue.TabIndex = 1;
+            this.lblResultNum.AutoSize = true;
+            this.lblResultNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
+            this.lblResultNum.Location = new System.Drawing.Point(5, 132);
+            this.lblResultNum.Name = "lblResultNum";
+            this.lblResultNum.Size = new System.Drawing.Size(165, 26);
+            this.lblResultNum.TabIndex = 0;
+            this.lblResultNum.Text = "0 test(s) found";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(363, 92);
+            this.pictureBox1.Size = new System.Drawing.Size(413, 88);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
-            // linkLabel2
+            // splitContainer1
             // 
-            this.linkLabel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.linkLabel2.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel2.Location = new System.Drawing.Point(-1, 54);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(359, 29);
-            this.linkLabel2.TabIndex = 1;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "11/11/2022 11:11 PM";
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer1.Location = new System.Drawing.Point(23, 12);
+            this.splitContainer1.Name = "splitContainer1";
             // 
-            // linkLabel1
+            // splitContainer1.Panel1
             // 
-            this.linkLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.linkLabel1.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel1.Location = new System.Drawing.Point(-1, 25);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(359, 29);
-            this.linkLabel1.TabIndex = 0;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "11/11/2022 11:11 PM";
+            this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.lblResultNum);
+            this.splitContainer1.Panel1.Controls.Add(this.txtUnitSnValue);
+            this.splitContainer1.Panel1.Controls.Add(this.btnSearch);
+            this.splitContainer1.Panel1.Controls.Add(this.lblUnitSnHeader);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.AutoScroll = true;
+            this.splitContainer1.Size = new System.Drawing.Size(335, 337);
+            this.splitContainer1.SplitterDistance = 93;
+            this.splitContainer1.TabIndex = 5;
+            // 
+            // btnResize
+            // 
+            this.btnResize.BackColor = System.Drawing.Color.Transparent;
+            this.btnResize.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnResize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResize.Location = new System.Drawing.Point(2, 12);
+            this.btnResize.Name = "btnResize";
+            this.btnResize.Size = new System.Drawing.Size(20, 28);
+            this.btnResize.TabIndex = 5;
+            this.btnResize.Text = "-";
+            this.btnResize.UseVisualStyleBackColor = false;
+            this.btnResize.Click += new System.EventHandler(this.btnResize_Click);
             // 
             // formGenasysTestViewer
             // 
             this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 361);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.pnlSelection);
-            this.Controls.Add(this.pnlResults);
-            this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.txtUnitSnValue);
-            this.Controls.Add(this.lblUnitSnHeader);
+            this.ClientSize = new System.Drawing.Size(384, 361);
+            this.Controls.Add(this.btnResize);
+            this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(800, 400);
+            this.MinimumSize = new System.Drawing.Size(400, 400);
             this.Name = "formGenasysTestViewer";
-            this.Text = "Genasys Test Viewer (v0.0.1)";
+            this.Text = "Genasys Test Viewer (v1.0.0)";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.pnlResults.ResumeLayout(false);
-            this.pnlResults.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -178,15 +164,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblUnitSnHeader;
-        private System.Windows.Forms.Panel pnlResults;
-        private System.Windows.Forms.Label lblResultNum;
-        private System.Windows.Forms.Panel pnlSelection;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtUnitSnValue;
+        private System.Windows.Forms.Label lblUnitSnHeader;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Label lblResultNum;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button btnResize;
     }
 }
 

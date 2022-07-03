@@ -45,6 +45,20 @@ namespace genasys_test_viewer
             }
         }
 
+        private void btnResize_Click(object sender, EventArgs e)
+        {
+            if (this.splitContainer1.Panel1Collapsed == true)
+            {
+                this.btnResize.Text = "-";
+                this.splitContainer1.Panel1Collapsed = false;
+            }
+            else
+            {
+                this.btnResize.Text = "+";
+                this.splitContainer1.Panel1Collapsed = true;
+            }
+        }
+
         private void Reinitialize()
         {
             // TODO
@@ -103,9 +117,5 @@ namespace genasys_test_viewer
             return alltestsFromSn;
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
