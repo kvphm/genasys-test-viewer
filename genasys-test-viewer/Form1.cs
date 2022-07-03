@@ -49,12 +49,12 @@ namespace genasys_test_viewer
         {
             if (this.splitContainer1.Panel1Collapsed == true)
             {
-                this.btnResize.Text = "-";
+                this.btnResize.Text = "«";
                 this.splitContainer1.Panel1Collapsed = false;
             }
             else
             {
-                this.btnResize.Text = "+";
+                this.btnResize.Text = "»";
                 this.splitContainer1.Panel1Collapsed = true;
             }
         }

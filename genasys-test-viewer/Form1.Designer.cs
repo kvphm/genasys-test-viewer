@@ -131,7 +131,7 @@
             this.btnResize.Name = "btnResize";
             this.btnResize.Size = new System.Drawing.Size(20, 28);
             this.btnResize.TabIndex = 5;
-            this.btnResize.Text = "-";
+            this.btnResize.Text = "«";
             this.btnResize.UseVisualStyleBackColor = false;
             this.btnResize.Click += new System.EventHandler(this.btnResize_Click);
             // 
