@@ -60,41 +60,34 @@ namespace genasys_test_viewer
             // 858034270
         }
 
-        //assign this to the SplitContainer's MouseDown event
-        private void splitCont_MouseDown(object sender, MouseEventArgs e)
-        {
-            // This disables the normal move behavior
-            ((SplitContainer)sender).IsSplitterFixed = true;
-        }
-
-        //assign this to the SplitContainer's MouseUp event
-        private void splitCont_MouseUp(object sender, MouseEventArgs e)
-        {
-            // This allows the splitter to be moved normally again
-            ((SplitContainer)sender).IsSplitterFixed = false;
-        }
-
         private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
         {
             e.DrawBackground();
-            Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) ? Brushes.Yellow : new SolidBrush(e.BackColor);
+            Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) 
+                ? Brushes.Yellow 
+                : new SolidBrush(e.BackColor);
             e.Graphics.FillRectangle(brush, e.Bounds);
             string text = ((ListBox)sender).Items[e.Index].ToString();
-            Brush myBrush = Brushes.Black;
+            brush = Brushes.Black;
             if (text.EndsWith("PASSED"))
             {
-                myBrush = Brushes.Green;
+                brush = Brushes.Green;
             }
             else if (text.EndsWith("FAILED"))
             {
-                myBrush = Brushes.Red;
+                brush = Brushes.Red;
             }
             else if (text.EndsWith("N/A"))
             {
-                myBrush = Brushes.Black;
+                brush = Brushes.Black;
             }
-            e.Graphics.DrawString(text,
-                e.Font, myBrush, e.Bounds, StringFormat.GenericDefault);
+            e.Graphics.DrawString(
+                text,
+                e.Font, 
+                brush, 
+                e.Bounds, 
+                StringFormat.GenericDefault
+            );
             e.DrawFocusRectangle();
         }
 
