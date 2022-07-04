@@ -15,28 +15,42 @@ namespace genasys_test_viewer
     {
         public formGenasysTestViewer()
         {
+            // Component initialization.
             InitializeComponent();
         }
 
+        /* ------------------------------ Event Triggers ------------------------------ */
+        // Event triggers when "Search" button is pressed.
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string unitSn = this.txtUnitSnValue.Text;
+            // Gets unit SN from user-inputted text box.
+            this.unitSn = this.txtUnitSnValue.Text;
+
+            // If textbox is empty or contains only whitespace characters, return. 
+            if (String.IsNullOrEmpty(unitSn.Trim())) return;
+
+            // Reads a CSV file and puts all tests in List<List<string>>
             this.allSnTests = GetAllTestsFromUnitSn(unitSn);
 
-            // TODO
-            // Clear panel 2 when new search
+            // Clear both panels to begin a new search.
+            clearPanels();
 
-            if (String.IsNullOrEmpty(unitSn.Trim())) return;
+            // Finds and set the column numbers for all of the designated headers.
+            setColNums();
+
+            // Display number of tests found for that particular unit SN.
             this.lblResultNum.Text = allSnTests.Count + Constants.LBL_TESTS_FOUND;
-            this.dateColNum = GetColNumFromStr(Constants.CHT_HEADER_DATE);
-            this.timeColNum = GetColNumFromStr(Constants.CHT_HEADER_TIME);
-            this.passFailColNum = GetColNumFromStr(Constants.CHT_HEADER_PASS_FAIL);
-            this.listBox1.Items.Clear();
+            
+            // Iterating through each test in List<List<string>>.
             for (int i = 0; i < allSnTests.Count; i++)
             {
-                string status = allSnTests[i][passFailColNum].Equals("")
-                    ? Constants.LBL_NA
-                    : allSnTests[i][passFailColNum];
+                // Determines if test has passed or failed from data.
+                string status = allSnTests[i][passFailColNum].Equals(Constants.LBL_PASSED) 
+                    ? Constants.LBL_PASSED 
+                    : Constants.LBL_FAILED;
+
+                // Find date and time for each row in listbox. If there's no date and time,
+                // FileFormatException will be thrown.
                 string date = allSnTests[i][dateColNum];
                 if (date.Equals(""))
                 {
@@ -47,48 +61,44 @@ namespace genasys_test_viewer
                 {
                     throw new System.IO.FileFormatException(Constants.ERR_3 + (i + 1));
                 }
-                this.listBox1.Items.Add(allSnTests[i][dateColNum] + " " + allSnTests[i][timeColNum] + " - " + status);
+
+                // Format text and add a new row to the listbox.
+                this.listBox1.Items.Add(date + " " + time + " - " + status);
             }
         }
 
+        // Triggers when a new row has been selected in the listbox.
         private void listBox1_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            try
-            {
-                int index = listBox1.FindString(listBox1.SelectedItem.ToString());
-                Console.WriteLine(this.allSnTests[index][0]); // works!
-            }
-            catch(Exception ex) {}
-            this.modelColNum = GetColNumFromStr(Constants.CHT_HEADER_MODEL);
-
-            // LRAD 400X
-            //
-            // Operator Initials: SP
-            // Time: 11/11/2022 5:14 PM
-            // 
-            // Serial Numbers
-            // 858034270
+            if (listBox1.SelectedItem == null) return;
+            string date = allSnTests[listBox1.FindString(listBox1.SelectedItem.ToString())][dateColNum]; 
+            string time = allSnTests[listBox1.FindString(listBox1.SelectedItem.ToString())][timeColNum];
+            string title = "Unit " + unitSn + " at " + date + " " + time;
+            this.lblTitle.Text = title;
         }
 
         private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
         {
             e.DrawBackground();
+
+            // Sets selection to yellow.
             Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) 
                 ? Brushes.Yellow 
                 : new SolidBrush(e.BackColor);
             e.Graphics.FillRectangle(brush, e.Bounds);
+            
+            // If test is a pass, make the fore color green. Else, make it black.
             if (e.Index < 0) return;
             string text = ((ListBox)sender).Items[e.Index].ToString();
-            brush = Brushes.Black;
-            if (text.EndsWith("PASSED"))
+            if (text.EndsWith(Constants.LBL_PASSED))
             {
                 brush = Brushes.Green;
             }
-            else if (text.EndsWith("FAILED"))
+            else if (text.EndsWith(Constants.LBL_FAILED))
             {
                 brush = Brushes.Red;
             }
-            else if (text.EndsWith("N/A"))
+            else
             {
                 brush = Brushes.Black;
             }
@@ -100,8 +110,12 @@ namespace genasys_test_viewer
                 StringFormat.GenericDefault
             );
             e.DrawFocusRectangle();
+
+            // Needed because owner-set parameters. For horizontal scroll capabilities.
+            this.listBox1.HorizontalExtent = 401;
         }
 
+        // Triggers when the resize button is pressed.
         private void btnResize_Click(object sender, EventArgs e)
         {
             if (this.splitContainer1.Panel1Collapsed == true)
@@ -116,8 +130,25 @@ namespace genasys_test_viewer
             }
         }
 
+        /* ----------------------------- Helper Functions ----------------------------- */
+        // Clear panels.
+        private void clearPanels()
+        {
+            this.listBox1.Items.Clear();
+            this.lblTitle.Text = "";
+        }
 
-            private int GetColNumFromStr(string str)
+        // Sets column number for each header.
+        private void setColNums()
+        {
+            this.dateColNum = GetColNumFromStr(Constants.CHT_HEADER_DATE);
+            this.timeColNum = GetColNumFromStr(Constants.CHT_HEADER_TIME);
+            this.passFailColNum = GetColNumFromStr(Constants.CHT_HEADER_PASS_FAIL);
+            this.modelColNum = GetColNumFromStr(Constants.CHT_HEADER_MODEL);
+        }
+
+        // Gets column number from header name as a string.
+        private int GetColNumFromStr(string str)
         {
             List<int> colNums = new List<int>();
             string[] row1 = File.ReadLines(Constants.PATH).First().Split(',');
@@ -135,6 +166,7 @@ namespace genasys_test_viewer
             return colNums[0];
         }
 
+        // Gets column number(s) from header name as substring.
         private List<int> GetColNumsFromSubstr(string substr)
         {
             List<int> colNums = new List<int>();
@@ -149,6 +181,7 @@ namespace genasys_test_viewer
             return colNums;
         }
 
+        // Compiles all tests from a given unit SN into a List<List<String>>.
         private List<List<string>> GetAllTestsFromUnitSn(string unitSn)
         {
             List<List<string>> allTestsFromSn = new List<List<string>>();

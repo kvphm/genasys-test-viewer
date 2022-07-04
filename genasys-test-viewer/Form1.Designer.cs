@@ -40,10 +40,12 @@ namespace genasys_test_viewer
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.btnResize = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -124,6 +126,7 @@ namespace genasys_test_viewer
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
+            this.splitContainer1.Panel2.Controls.Add(this.lblTitle);
             this.splitContainer1.Size = new System.Drawing.Size(843, 534);
             this.splitContainer1.SplitterDistance = 240;
             this.splitContainer1.TabIndex = 5;
@@ -163,6 +166,16 @@ namespace genasys_test_viewer
             this.tableLayoutPanel1.Size = new System.Drawing.Size(454, 32);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.Location = new System.Drawing.Point(2, 2);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(604, 37);
+            this.lblTitle.TabIndex = 0;
+            // this.lblTitle.Text = "Unit 858034270 at 11/11/2022 5:11 PM";
+            // 
             // btnResize
             // 
             this.btnResize.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -191,6 +204,8 @@ namespace genasys_test_viewer
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -210,12 +225,15 @@ namespace genasys_test_viewer
         private System.Windows.Forms.Button btnResize;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label lblTitle;
 
         private List<List<string>> allSnTests;
+        private string unitSn;
         private int dateColNum;
         private int timeColNum;
         private int passFailColNum;
         private int modelColNum;
+
     }
 }
 
