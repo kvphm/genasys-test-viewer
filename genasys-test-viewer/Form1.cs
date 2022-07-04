@@ -47,13 +47,13 @@ namespace genasys_test_viewer
 
                 // Determines if test has passed or failed from data.
                 string status;
-                if (allSnTests[i][0].Equals(Constants.LBL_PASSED))
+                if (allSnTests[unitPassFailColNum][0].Equals(Constants.LBL_PASSED))
                 {
                     status = Constants.LBL_PASSED;
                 }
                 else
                 {
-                    if (allSnTests[i].Contains(Constants.LBL_FAILED))
+                    if (allSnTests[unitPassFailColNum].Contains(Constants.LBL_FAILED))
                     {
                         status = Constants.LBL_FAILED;
                     }
