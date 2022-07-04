@@ -44,11 +44,24 @@ namespace genasys_test_viewer
             // Iterating through each test in List<List<string>>.
             for (int i = 0; i < allSnTests.Count; i++)
             {
-                // Determines if test has passed or failed from data.
-                string status = allSnTests[i][unitPassFailColNum].Equals(Constants.LBL_PASSED) 
-                    ? Constants.LBL_PASSED 
-                    : Constants.LBL_FAILED;
 
+                // Determines if test has passed or failed from data.
+                string status;
+                if (allSnTests[i][0].Equals(Constants.LBL_PASSED))
+                {
+                    status = Constants.LBL_PASSED;
+                }
+                else
+                {
+                    if (allSnTests[i].Contains(Constants.LBL_FAILED))
+                    {
+                        status = Constants.LBL_FAILED;
+                    }
+                    else
+                    {
+                        status = Constants.LBL_INCONCLUSIVE;
+                    }
+                }
 
                 // Find date and time for each row in listbox. If there's no date and time,
                 // FileFormatException will be thrown.
