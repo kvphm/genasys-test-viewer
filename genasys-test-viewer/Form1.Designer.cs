@@ -35,9 +35,9 @@
             this.lblResultNum = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnResize = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -68,7 +68,6 @@
             this.lblUnitSnHeader.TabIndex = 0;
             this.lblUnitSnHeader.Text = "Enter unit SN:";
             this.lblUnitSnHeader.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.lblUnitSnHeader.Click += new System.EventHandler(this.lblUnitSnHeader_Click);
             // 
             // btnSearch
             // 
@@ -86,11 +85,10 @@
             // 
             this.lblResultNum.AutoSize = true;
             this.lblResultNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
-            this.lblResultNum.Location = new System.Drawing.Point(8, 137);
+            this.lblResultNum.Location = new System.Drawing.Point(17, 137);
             this.lblResultNum.Name = "lblResultNum";
-            this.lblResultNum.Size = new System.Drawing.Size(165, 26);
+            this.lblResultNum.Size = new System.Drawing.Size(171, 26);
             this.lblResultNum.TabIndex = 0;
-            this.lblResultNum.Text = "0 test(s) found";
             // 
             // pictureBox1
             // 
@@ -124,8 +122,22 @@
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Size = new System.Drawing.Size(843, 534);
-            this.splitContainer1.SplitterDistance = 216;
+            this.splitContainer1.SplitterDistance = 240;
             this.splitContainer1.TabIndex = 5;
+            // 
+            // listBox1
+            // 
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.HorizontalScrollbar = true;
+            this.listBox1.ItemHeight = 25;
+            this.listBox1.Location = new System.Drawing.Point(22, 166);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(194, 329);
+            this.listBox1.TabIndex = 5;
             // 
             // tableLayoutPanel1
             // 
@@ -143,7 +155,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(395, 32);
             this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // btnResize
             // 
@@ -157,19 +168,6 @@
             this.btnResize.Text = "«";
             this.btnResize.UseVisualStyleBackColor = false;
             this.btnResize.Click += new System.EventHandler(this.btnResize_Click);
-            // 
-            // listBox1
-            // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 25;
-            this.listBox1.Location = new System.Drawing.Point(13, 166);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(188, 354);
-            this.listBox1.TabIndex = 5;
             // 
             // formGenasysTestViewer
             // 

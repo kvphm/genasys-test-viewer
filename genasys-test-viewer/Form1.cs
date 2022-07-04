@@ -22,26 +22,20 @@ namespace genasys_test_viewer
         {
             string unitSn = this.txtUnitSnValue.Text;
             List<List<string>> allSnTests = GetAllTestsFromUnitSn(unitSn);
-            if (String.IsNullOrEmpty(unitSn.Trim()))
-            {
-                Reinitialize();
-                return;
-            }
+            if (String.IsNullOrEmpty(unitSn.Trim())) return;
             this.lblResultNum.Text = allSnTests.Count + Constants.LBL_TESTS_FOUND;
-            foreach (var aTest in allSnTests)
-            {                
-                /*
-                Label lbl = new System.Windows.Forms.Label();
-                lbl.AutoSize = true;
-                lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-                lbl.Location = new System.Drawing.Point(3, 19);
-                lbl.Name = "aTest";
-                lbl.Size = new System.Drawing.Size(140, 17);
-                lbl.TabIndex = 4;
-                lbl.Text = "11/11/2022 11:11PM - ";
-                this.pnlResults.Controls.Add(lbl);
-                */
-                
+            int dateColNum = GetColNumFromStr(Constants.CHT_HEADER_DATE);
+            int timeColNum = GetColNumFromStr(Constants.CHT_HEADER_TIME);
+            int passFailColNum = GetColNumFromStr(Constants.CHT_HEADER_PASS_FAIL);
+            this.listBox1.Items.Clear();
+            for (int i = 0; i < allSnTests.Count; i++)
+            {
+                string status = allSnTests[i][passFailColNum] == ""
+                    ? Constants.LBL_INCONCLUSIVE
+                    : allSnTests[i][passFailColNum];
+                this.listBox1.Items.Add(
+                    allSnTests[i][dateColNum] + " " + allSnTests[i][timeColNum] + " - " + status
+                );
             }
         }
 
@@ -59,12 +53,7 @@ namespace genasys_test_viewer
             }
         }
 
-        private void Reinitialize()
-        {
-            // TODO
-        }
-
-        private List<int> GetColNumsFromStr(string str)
+        private int GetColNumFromStr(string str)
         {
             List<int> colNums = new List<int>();
             string[] row1 = File.ReadLines(Constants.PATH).First().Split(',');
@@ -75,7 +64,11 @@ namespace genasys_test_viewer
                     colNums.Add(i);
                 }
             }
-            return colNums;
+            if (colNums.Count != 1)
+            {
+                throw new System.IO.FileFormatException(str + Constants.ERR_1);
+            }
+            return colNums[0];
         }
 
         private List<int> GetColNumsFromSubstr(string substr)
@@ -97,17 +90,13 @@ namespace genasys_test_viewer
             List<List<string>> alltestsFromSn = new List<List<string>>();
             using (var reader = new StreamReader(@Constants.PATH))
             {
-                List<int> unitSnCol = GetColNumsFromStr(Constants.CHT_HEADER_UNIT_SN);
-                if (unitSnCol == null)
-                {
-                    throw new System.IO.FileFormatException(Constants.CHT_HEADER_UNIT_SN + Constants.ERR_1);
-                }
+                int unitSnCol = GetColNumFromStr(Constants.CHT_HEADER_UNIT_SN);
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
                     var values = line.Split(';');
                     String[] row = values[0].Split(',');
-                    if (row[unitSnCol[0]] == unitSn)
+                    if (row[unitSnCol] == unitSn)
                     {
                         alltestsFromSn.Add(new List<string>(row));
                     }
@@ -117,14 +106,5 @@ namespace genasys_test_viewer
             return alltestsFromSn;
         }
 
-        private void lblUnitSnHeader_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
