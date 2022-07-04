@@ -223,7 +223,7 @@ namespace genasys_test_viewer
             {
                 return allSnTests[0][colNum];
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 throw new System.IO.FileFormatException(Constants.ERR_4);
             }
