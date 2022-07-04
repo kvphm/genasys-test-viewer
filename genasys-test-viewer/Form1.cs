@@ -48,7 +48,12 @@ namespace genasys_test_viewer
                 );
             }
         }
-        
+
+        private void listBox1_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            int index = listBox1.FindString(listBox1.SelectedItem.ToString());
+            
+        }
 
         private void btnResize_Click(object sender, EventArgs e)
         {
