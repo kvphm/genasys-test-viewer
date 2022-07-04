@@ -22,6 +22,10 @@ namespace genasys_test_viewer
         {
             string unitSn = this.txtUnitSnValue.Text;
             this.allSnTests = GetAllTestsFromUnitSn(unitSn);
+
+            // TODO
+            // Clear panel 2 when new search
+
             if (String.IsNullOrEmpty(unitSn.Trim())) return;
             this.lblResultNum.Text = allSnTests.Count + Constants.LBL_TESTS_FOUND;
             this.dateColNum = GetColNumFromStr(Constants.CHT_HEADER_DATE);
@@ -52,7 +56,8 @@ namespace genasys_test_viewer
             int index = listBox1.FindString(listBox1.SelectedItem.ToString());
             Console.WriteLine(this.allSnTests[index][0]); // works!
 
-            // Test for LRAD 400X
+            // LRAD 400X
+            //
             // Operator Initials: SP
             // Time: 11/11/2022 5:14 PM
             // 

@@ -134,6 +134,7 @@ namespace genasys_test_viewer
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.listBox1.FormattingEnabled = true;
             this.listBox1.HorizontalScrollbar = true;
@@ -142,10 +143,8 @@ namespace genasys_test_viewer
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(206, 352);
             this.listBox1.TabIndex = 5;
+            this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox1_DrawItem);
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            this.listBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.listBox1.DrawItem +=
-                new System.Windows.Forms.DrawItemEventHandler(this.listBox1_DrawItem);
             // 
             // tableLayoutPanel1
             // 
