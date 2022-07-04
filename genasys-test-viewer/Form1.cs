@@ -24,14 +24,14 @@ namespace genasys_test_viewer
             this.allSnTests = GetAllTestsFromUnitSn(unitSn);
             if (String.IsNullOrEmpty(unitSn.Trim())) return;
             this.lblResultNum.Text = allSnTests.Count + Constants.LBL_TESTS_FOUND;
-            int dateColNum = GetColNumFromStr(Constants.CHT_HEADER_DATE);
-            int timeColNum = GetColNumFromStr(Constants.CHT_HEADER_TIME);
-            int passFailColNum = GetColNumFromStr(Constants.CHT_HEADER_PASS_FAIL);
+            this.dateColNum = GetColNumFromStr(Constants.CHT_HEADER_DATE);
+            this.timeColNum = GetColNumFromStr(Constants.CHT_HEADER_TIME);
+            this.passFailColNum = GetColNumFromStr(Constants.CHT_HEADER_PASS_FAIL);
             this.listBox1.Items.Clear();
             for (int i = 0; i < allSnTests.Count; i++)
             {
                 string status = allSnTests[i][passFailColNum].Equals("")
-                    ? Constants.LBL_INCONCLUSIVE
+                    ? Constants.LBL_NA
                     : allSnTests[i][passFailColNum];
                 string date = allSnTests[i][dateColNum];
                 if (date.Equals(""))
@@ -43,9 +43,7 @@ namespace genasys_test_viewer
                 {
                     throw new System.IO.FileFormatException(Constants.ERR_3 + (i + 1));
                 }
-                this.listBox1.Items.Add(
-                    allSnTests[i][dateColNum] + " " + allSnTests[i][timeColNum] + " - " + status
-                );
+                this.listBox1.Items.Add(allSnTests[i][dateColNum] + " " + allSnTests[i][timeColNum] + " - " + status);
             }
         }
 
@@ -53,6 +51,51 @@ namespace genasys_test_viewer
         {
             int index = listBox1.FindString(listBox1.SelectedItem.ToString());
             Console.WriteLine(this.allSnTests[index][0]); // works!
+
+            // Test for LRAD 400X
+            // Operator Initials: SP
+            // Time: 11/11/2022 5:14 PM
+            // 
+            // Serial Numbers
+            // 858034270
+        }
+
+        //assign this to the SplitContainer's MouseDown event
+        private void splitCont_MouseDown(object sender, MouseEventArgs e)
+        {
+            // This disables the normal move behavior
+            ((SplitContainer)sender).IsSplitterFixed = true;
+        }
+
+        //assign this to the SplitContainer's MouseUp event
+        private void splitCont_MouseUp(object sender, MouseEventArgs e)
+        {
+            // This allows the splitter to be moved normally again
+            ((SplitContainer)sender).IsSplitterFixed = false;
+        }
+
+        private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) ? Brushes.Yellow : new SolidBrush(e.BackColor);
+            e.Graphics.FillRectangle(brush, e.Bounds);
+            string text = ((ListBox)sender).Items[e.Index].ToString();
+            Brush myBrush = Brushes.Black;
+            if (text.EndsWith("PASSED"))
+            {
+                myBrush = Brushes.Green;
+            }
+            else if (text.EndsWith("FAILED"))
+            {
+                myBrush = Brushes.Red;
+            }
+            else if (text.EndsWith("N/A"))
+            {
+                myBrush = Brushes.Black;
+            }
+            e.Graphics.DrawString(text,
+                e.Font, myBrush, e.Bounds, StringFormat.GenericDefault);
+            e.DrawFocusRectangle();
         }
 
         private void btnResize_Click(object sender, EventArgs e)
@@ -69,7 +112,8 @@ namespace genasys_test_viewer
             }
         }
 
-        private int GetColNumFromStr(string str)
+
+            private int GetColNumFromStr(string str)
         {
             List<int> colNums = new List<int>();
             string[] row1 = File.ReadLines(Constants.PATH).First().Split(',');

@@ -22,6 +22,6 @@ namespace genasys_test_viewer
         public const string CHT_HEADER_TIME = "Time";
         public const string CHT_HEADER_PASS_FAIL = "Pass/Fail";
         public const string LBL_TESTS_FOUND = " test(s) found";
-        public const string LBL_INCONCLUSIVE = "INCONCLUSIVE";
+        public const string LBL_NA = "N/A";
     }
 }

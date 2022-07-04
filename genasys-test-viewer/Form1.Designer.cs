@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace genasys_test_viewer
 {
@@ -114,6 +115,7 @@ namespace genasys_test_viewer
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.AutoScroll = true;
             this.splitContainer1.Panel1.Controls.Add(this.listBox1);
             this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
             this.splitContainer1.Panel1.Controls.Add(this.lblResultNum);
@@ -141,6 +143,9 @@ namespace genasys_test_viewer
             this.listBox1.Size = new System.Drawing.Size(206, 352);
             this.listBox1.TabIndex = 5;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listBox1.DrawItem +=
+                new System.Windows.Forms.DrawItemEventHandler(this.listBox1_DrawItem);
             // 
             // tableLayoutPanel1
             // 
@@ -152,7 +157,7 @@ namespace genasys_test_viewer
             this.tableLayoutPanel1.Controls.Add(this.txtUnitSnValue, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnSearch, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblUnitSnHeader, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(-83, 97);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(-78, 97);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -195,11 +200,6 @@ namespace genasys_test_viewer
 
         }
 
-        private void TxtUnitSnValue_Click(object sender, System.EventArgs e)
-        {
-            throw new System.NotImplementedException();
-        }
-
         #endregion
 
         private System.Windows.Forms.TextBox txtUnitSnValue;
@@ -213,6 +213,9 @@ namespace genasys_test_viewer
         private System.Windows.Forms.ListBox listBox1;
 
         private List<List<string>> allSnTests;
+        private int dateColNum;
+        private int timeColNum;
+        private int passFailColNum;
     }
 }
 
