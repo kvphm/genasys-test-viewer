@@ -13,13 +13,14 @@ namespace genasys_test_viewer
 {
     public partial class formGenasysTestViewer : Form
     {
+        // formGenasysTestViewer Constructor.
         public formGenasysTestViewer()
         {
             // Component initialization.
             InitializeComponent();
         }
 
-        /* ------------------------------ Event Triggers ------------------------------ */
+        /* ---------------------------------- Events ---------------------------------- */
         // Triggers when "Search" button is pressed.
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -174,11 +175,11 @@ namespace genasys_test_viewer
             this.modelColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_MODEL);
 
             // Column numbers from substrings.
-            this.componentSnColNums = GetColNumsFromSubstr(Constants.CHT_HEADER_SN)
+            this.componentSnColNums = GetColNumsFromHeaderSubstr(Constants.CHT_HEADER_SN)
                 .Where(x => !x.ToString()
                 .Contains(Constants.CHT_HEADER_DRIVER))
                 .ToList();
-            this.driverSnColNums = GetColNumsFromSubstr(Constants.CHT_HEADER_DRIVER);
+            this.driverSnColNums = GetColNumsFromHeaderSubstr(Constants.CHT_HEADER_DRIVER);
         }
 
         // Gets column number from header name as a string.
