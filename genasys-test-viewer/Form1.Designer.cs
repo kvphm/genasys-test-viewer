@@ -87,16 +87,16 @@
             this.lblResultNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
             this.lblResultNum.Location = new System.Drawing.Point(17, 137);
             this.lblResultNum.Name = "lblResultNum";
-            this.lblResultNum.Size = new System.Drawing.Size(171, 26);
+            this.lblResultNum.Size = new System.Drawing.Size(0, 26);
             this.lblResultNum.TabIndex = 0;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-80, 6);
+            this.pictureBox1.Location = new System.Drawing.Point(-73, 6);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(375, 88);
+            this.pictureBox1.Size = new System.Drawing.Size(386, 88);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
@@ -134,9 +134,9 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.HorizontalScrollbar = true;
             this.listBox1.ItemHeight = 25;
-            this.listBox1.Location = new System.Drawing.Point(22, 166);
+            this.listBox1.Location = new System.Drawing.Point(17, 166);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(194, 329);
+            this.listBox1.Size = new System.Drawing.Size(206, 354);
             this.listBox1.TabIndex = 5;
             // 
             // tableLayoutPanel1
@@ -145,20 +145,19 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 141F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 144F));
             this.tableLayoutPanel1.Controls.Add(this.txtUnitSnValue, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnSearch, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblUnitSnHeader, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(-89, 97);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(-83, 97);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(395, 32);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(454, 32);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnResize
             // 
-            this.btnResize.BackColor = System.Drawing.Color.Transparent;
             this.btnResize.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnResize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnResize.Location = new System.Drawing.Point(2, 12);
@@ -166,7 +165,7 @@
             this.btnResize.Size = new System.Drawing.Size(20, 28);
             this.btnResize.TabIndex = 5;
             this.btnResize.Text = "«";
-            this.btnResize.UseVisualStyleBackColor = false;
+            this.btnResize.UseVisualStyleBackColor = true;
             this.btnResize.Click += new System.EventHandler(this.btnResize_Click);
             // 
             // formGenasysTestViewer
