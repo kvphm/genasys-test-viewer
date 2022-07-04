@@ -21,7 +21,7 @@ namespace genasys_test_viewer
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string unitSn = this.txtUnitSnValue.Text;
-            List<List<string>> allSnTests = GetAllTestsFromUnitSn(unitSn);
+            this.allSnTests = GetAllTestsFromUnitSn(unitSn);
             if (String.IsNullOrEmpty(unitSn.Trim())) return;
             this.lblResultNum.Text = allSnTests.Count + Constants.LBL_TESTS_FOUND;
             int dateColNum = GetColNumFromStr(Constants.CHT_HEADER_DATE);
@@ -52,7 +52,7 @@ namespace genasys_test_viewer
         private void listBox1_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             int index = listBox1.FindString(listBox1.SelectedItem.ToString());
-            
+            Console.WriteLine(this.allSnTests[index][0]); // works!
         }
 
         private void btnResize_Click(object sender, EventArgs e)
@@ -103,7 +103,7 @@ namespace genasys_test_viewer
 
         private List<List<string>> GetAllTestsFromUnitSn(string unitSn)
         {
-            List<List<string>> alltestsFromSn = new List<List<string>>();
+            List<List<string>> allTestsFromSn = new List<List<string>>();
             using (var reader = new StreamReader(@Constants.PATH))
             {
                 int unitSnCol = GetColNumFromStr(Constants.CHT_HEADER_UNIT_SN);
@@ -114,12 +114,12 @@ namespace genasys_test_viewer
                     String[] row = values[0].Split(',');
                     if (row[unitSnCol] == unitSn)
                     {
-                        alltestsFromSn.Add(new List<string>(row));
+                        allTestsFromSn.Add(new List<string>(row));
                     }
                 }
             }
-            alltestsFromSn.Reverse();
-            return alltestsFromSn;
+            allTestsFromSn.Reverse();
+            return allTestsFromSn;
         }
 
     }

@@ -1,4 +1,6 @@
-﻿namespace genasys_test_viewer
+﻿using System.Collections.Generic;
+
+namespace genasys_test_viewer
 {
     partial class formGenasysTestViewer
     {
@@ -209,6 +211,8 @@
         private System.Windows.Forms.Button btnResize;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ListBox listBox1;
+
+        private List<List<string>> allSnTests;
     }
 }
 
