@@ -173,10 +173,11 @@ namespace genasys_test_viewer
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.Location = new System.Drawing.Point(2, 2);
+            this.lblTitle.Location = new System.Drawing.Point(2, 6);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(0, 37);
+            this.lblTitle.Size = new System.Drawing.Size(592, 37);
             this.lblTitle.TabIndex = 0;
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnResize
             // 
@@ -201,7 +202,7 @@ namespace genasys_test_viewer
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(400, 400);
             this.Name = "formGenasysTestViewer";
-            this.Text = "Genasys Test Viewer (v1.0.0)";
+            this.Text = "Genasys Test Viewer";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -231,12 +232,15 @@ namespace genasys_test_viewer
 
         private List<List<string>> allSnTests;
         private string unitSn;
+        private int operatorColNum;
+        private int WOColNum;
         private int dateColNum;
         private int timeColNum;
         private int unitPassFailColNum;
         private int modelColNum;
 
-        private List<int> snColNums;
+        private List<int> componentSnColNums;
+        private List<int> driverSnColNums;
         private List<int> passFailColNums;
 
 

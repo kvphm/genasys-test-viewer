@@ -47,13 +47,13 @@ namespace genasys_test_viewer
 
                 // Determines if test has passed or failed from data.
                 string status;
-                if (allSnTests[unitPassFailColNum][0].Equals(Constants.LBL_PASSED))
+                if (allSnTests[i][unitPassFailColNum].Equals(Constants.LBL_PASSED))
                 {
                     status = Constants.LBL_PASSED;
                 }
                 else
                 {
-                    if (allSnTests[unitPassFailColNum].Contains(Constants.LBL_FAILED))
+                    if (allSnTests[i].Contains(Constants.LBL_FAILED))
                     {
                         status = Constants.LBL_FAILED;
                     }
@@ -93,10 +93,9 @@ namespace genasys_test_viewer
             // Get time of selected row.
             string time = allSnTests[listBox1.FindString(listBox1.SelectedItem.ToString())][timeColNum];
             
-            // Format and set title of panel 2.
-            string title = "Unit " + unitSn + " at " + date + " " + time;
+            // Format and set title for panel 2.
+            string title = "Test of Unit " + unitSn + " at " + date + " " + time;
             this.lblTitle.Text = title;
-
 
         }
 
@@ -166,14 +165,24 @@ namespace genasys_test_viewer
         // Sets column number for each header.
         private void setColNums()
         {
-            this.dateColNum = GetColNumFromStr(Constants.CHT_HEADER_DATE);
-            this.timeColNum = GetColNumFromStr(Constants.CHT_HEADER_TIME);
-            this.unitPassFailColNum = GetColNumFromStr(Constants.CHT_HEADER_PASS_FAIL);
-            this.modelColNum = GetColNumFromStr(Constants.CHT_HEADER_MODEL);
+            // Column numbers from exact strings.
+            // this.operatorColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_OPERATOR);
+            // this.WOColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_WONum);
+            this.dateColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_DATE);
+            this.timeColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_TIME);
+            this.unitPassFailColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_PASS_FAIL);
+            this.modelColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_MODEL);
+
+            // Column numbers from substrings.
+            this.componentSnColNums = GetColNumsFromSubstr(Constants.CHT_HEADER_SN)
+                .Where(x => !x.ToString()
+                .Contains(Constants.CHT_HEADER_DRIVER))
+                .ToList();
+            this.driverSnColNums = GetColNumsFromSubstr(Constants.CHT_HEADER_DRIVER);
         }
 
         // Gets column number from header name as a string.
-        private int GetColNumFromStr(string str)
+        private int GetColNumFromHeaderStr(string str)
         {
             List<int> colNums = new List<int>();
             string[] row1 = File.ReadLines(Constants.PATH).First().Split(',');
@@ -192,7 +201,7 @@ namespace genasys_test_viewer
         }
 
         // Gets column number(s) from header name as substring.
-        private List<int> GetColNumsFromSubstr(string substr)
+        private List<int> GetColNumsFromHeaderSubstr(string substr)
         {
             List<int> colNums = new List<int>();
             string[] row1 = File.ReadLines(Constants.PATH).First().Split(',');
@@ -206,13 +215,26 @@ namespace genasys_test_viewer
             return colNums;
         }
 
+        // Get header string from column number.
+        private string GetHeaderStrFromColNum(int colNum)
+        {
+            try
+            {
+                return allSnTests[0][colNum];
+            }
+            catch(Exception ex)
+            {
+                throw new System.IO.FileFormatException(Constants.ERR_4);
+            }
+        }
+
         // Compiles all tests from a given unit SN into a List<List<String>>.
         private List<List<string>> GetAllTestsFromUnitSn(string unitSn)
         {
             List<List<string>> allTestsFromSn = new List<List<string>>();
             using (var reader = new StreamReader(@Constants.PATH))
             {
-                int unitSnCol = GetColNumFromStr(Constants.CHT_HEADER_UNIT_SN);
+                int unitSnCol = GetColNumFromHeaderStr(Constants.CHT_HEADER_UNIT_SN);
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
