@@ -88,9 +88,12 @@ namespace genasys_test_viewer
             // 
             // lblResultNum
             // 
+            this.lblResultNum.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResultNum.AutoSize = true;
             this.lblResultNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
-            this.lblResultNum.Location = new System.Drawing.Point(17, 137);
+            this.lblResultNum.Location = new System.Drawing.Point(12, 137);
             this.lblResultNum.Name = "lblResultNum";
             this.lblResultNum.Size = new System.Drawing.Size(0, 26);
             this.lblResultNum.TabIndex = 0;
@@ -118,9 +121,9 @@ namespace genasys_test_viewer
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.lblResultNum);
             this.splitContainer1.Panel1.Controls.Add(this.listBox1);
             this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
-            this.splitContainer1.Panel1.Controls.Add(this.lblResultNum);
             this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel1);
             // 
             // splitContainer1.Panel2
@@ -172,9 +175,8 @@ namespace genasys_test_viewer
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
             this.lblTitle.Location = new System.Drawing.Point(2, 2);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(604, 37);
+            this.lblTitle.Size = new System.Drawing.Size(0, 37);
             this.lblTitle.TabIndex = 0;
-            // this.lblTitle.Text = "Unit 858034270 at 11/11/2022 5:11 PM";
             // 
             // btnResize
             // 
@@ -231,8 +233,12 @@ namespace genasys_test_viewer
         private string unitSn;
         private int dateColNum;
         private int timeColNum;
-        private int passFailColNum;
+        private int unitPassFailColNum;
         private int modelColNum;
+
+        private List<int> snColNums;
+        private List<int> passFailColNums;
+
 
     }
 }

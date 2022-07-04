@@ -20,7 +20,7 @@ namespace genasys_test_viewer
         }
 
         /* ------------------------------ Event Triggers ------------------------------ */
-        // Event triggers when "Search" button is pressed.
+        // Triggers when "Search" button is pressed.
         private void btnSearch_Click(object sender, EventArgs e)
         {
             // Gets unit SN from user-inputted text box.
@@ -45,9 +45,10 @@ namespace genasys_test_viewer
             for (int i = 0; i < allSnTests.Count; i++)
             {
                 // Determines if test has passed or failed from data.
-                string status = allSnTests[i][passFailColNum].Equals(Constants.LBL_PASSED) 
+                string status = allSnTests[i][unitPassFailColNum].Equals(Constants.LBL_PASSED) 
                     ? Constants.LBL_PASSED 
                     : Constants.LBL_FAILED;
+
 
                 // Find date and time for each row in listbox. If there's no date and time,
                 // FileFormatException will be thrown.
@@ -70,20 +71,31 @@ namespace genasys_test_viewer
         // Triggers when a new row has been selected in the listbox.
         private void listBox1_SelectedIndexChanged(object sender, System.EventArgs e)
         {
+            // If selected item is "invalid", return.
             if (listBox1.SelectedItem == null) return;
+
+            // Get date of selected row.
             string date = allSnTests[listBox1.FindString(listBox1.SelectedItem.ToString())][dateColNum]; 
+            
+            // Get time of selected row.
             string time = allSnTests[listBox1.FindString(listBox1.SelectedItem.ToString())][timeColNum];
+            
+            // Format and set title of panel 2.
             string title = "Unit " + unitSn + " at " + date + " " + time;
             this.lblTitle.Text = title;
+
+
         }
 
+        // Triggers when the listbox is drawn.
         private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
         {
+            // Draws background of listbox.
             e.DrawBackground();
 
             // Sets selection to yellow.
             Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) 
-                ? Brushes.Yellow 
+                ? Brushes.Yellow
                 : new SolidBrush(e.BackColor);
             e.Graphics.FillRectangle(brush, e.Bounds);
             
@@ -143,7 +155,7 @@ namespace genasys_test_viewer
         {
             this.dateColNum = GetColNumFromStr(Constants.CHT_HEADER_DATE);
             this.timeColNum = GetColNumFromStr(Constants.CHT_HEADER_TIME);
-            this.passFailColNum = GetColNumFromStr(Constants.CHT_HEADER_PASS_FAIL);
+            this.unitPassFailColNum = GetColNumFromStr(Constants.CHT_HEADER_PASS_FAIL);
             this.modelColNum = GetColNumFromStr(Constants.CHT_HEADER_MODEL);
         }
 
@@ -202,6 +214,5 @@ namespace genasys_test_viewer
             allTestsFromSn.Reverse();
             return allTestsFromSn;
         }
-
     }
 }
