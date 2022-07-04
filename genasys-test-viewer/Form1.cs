@@ -53,8 +53,14 @@ namespace genasys_test_viewer
 
         private void listBox1_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            int index = listBox1.FindString(listBox1.SelectedItem.ToString());
-            Console.WriteLine(this.allSnTests[index][0]); // works!
+            try
+            {
+                int index = listBox1.FindString(listBox1.SelectedItem.ToString());
+                Console.WriteLine(this.allSnTests[index][0]); // works!
+            }
+            catch(Exception ex) {}
+            
+            
 
             // LRAD 400X
             //
@@ -72,6 +78,7 @@ namespace genasys_test_viewer
                 ? Brushes.Yellow 
                 : new SolidBrush(e.BackColor);
             e.Graphics.FillRectangle(brush, e.Bounds);
+            if (e.Index < 0) return;
             string text = ((ListBox)sender).Items[e.Index].ToString();
             brush = Brushes.Black;
             if (text.EndsWith("PASSED"))
