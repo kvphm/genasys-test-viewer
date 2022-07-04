@@ -30,14 +30,25 @@ namespace genasys_test_viewer
             this.listBox1.Items.Clear();
             for (int i = 0; i < allSnTests.Count; i++)
             {
-                string status = allSnTests[i][passFailColNum] == ""
+                string status = allSnTests[i][passFailColNum].Equals("")
                     ? Constants.LBL_INCONCLUSIVE
                     : allSnTests[i][passFailColNum];
+                string date = allSnTests[i][dateColNum];
+                if (date.Equals(""))
+                {
+                    throw new System.IO.FileFormatException(Constants.ERR_2 + (i + 1));
+                }
+                string time = allSnTests[i][timeColNum];
+                if (time.Equals(""))
+                {
+                    throw new System.IO.FileFormatException(Constants.ERR_3 + (i + 1));
+                }
                 this.listBox1.Items.Add(
                     allSnTests[i][dateColNum] + " " + allSnTests[i][timeColNum] + " - " + status
                 );
             }
         }
+        
 
         private void btnResize_Click(object sender, EventArgs e)
         {

@@ -13,6 +13,8 @@ namespace genasys_test_viewer
 
         // Error messages.
         public const string ERR_1 = " column cannot be found";
+        public const string ERR_2 = "Date is missing for row ";
+        public const string ERR_3 = "Time is missing for row ";
 
         // Miscellaneous constants.
         public const string CHT_HEADER_UNIT_SN = "Unit SN";
@@ -21,8 +23,5 @@ namespace genasys_test_viewer
         public const string CHT_HEADER_PASS_FAIL = "Pass/Fail";
         public const string LBL_TESTS_FOUND = " test(s) found";
         public const string LBL_INCONCLUSIVE = "INCONCLUSIVE";
-        public const int INIT_LOC_TIME_X = 3;
-        public const int INIT_LOC_TIME_Y = 19;
-        public const int SEARCH_SPACING = 17;
     }
 }
