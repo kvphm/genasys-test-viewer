@@ -13,7 +13,7 @@ namespace genasys_test_viewer
 {
     public partial class formGenasysTestViewer : Form
     {
-        // formGenasysTestViewer Constructor.
+        // formGenasysTestViewer constructor.
         public formGenasysTestViewer()
         {
             // Component initialization.
