@@ -215,6 +215,7 @@ namespace genasys_test_viewer
         private int dateColNum;
         private int timeColNum;
         private int passFailColNum;
+        private int modelColNum;
     }
 }
 

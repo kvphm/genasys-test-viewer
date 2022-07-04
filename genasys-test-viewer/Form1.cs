@@ -59,8 +59,7 @@ namespace genasys_test_viewer
                 Console.WriteLine(this.allSnTests[index][0]); // works!
             }
             catch(Exception ex) {}
-            
-            
+            this.modelColNum = GetColNumFromStr(Constants.CHT_HEADER_MODEL);
 
             // LRAD 400X
             //
