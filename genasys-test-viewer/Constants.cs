@@ -16,6 +16,8 @@ namespace genasys_test_viewer
         public const string ERR_2 = "Date is missing for row ";
         public const string ERR_3 = "Time is missing for row ";
         public const string ERR_4 = "Missing header row";
+        public const string ERR_5 = "Out of rows for column 2";
+        public const string ERR_6 = "Out of rows for column 3";
 
         // Miscellaneous constants.
         public const int HORIZONTAL_EXTENT_PANEL_1 = 320;

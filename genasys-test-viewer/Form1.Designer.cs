@@ -232,7 +232,7 @@ namespace genasys_test_viewer
             this.tableLayoutPanel2.Controls.Add(this.lblModel, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.lblSoftwareVer, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.lblRemarks, 0, 6);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 46);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 58);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 10;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -245,7 +245,7 @@ namespace genasys_test_viewer
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(568, 260);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(567, 260);
             this.tableLayoutPanel2.TabIndex = 25;
             // 
             // lblDriverSn8
@@ -254,9 +254,8 @@ namespace genasys_test_viewer
             this.lblDriverSn8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblDriverSn8.Location = new System.Drawing.Point(381, 182);
             this.lblDriverSn8.Name = "lblDriverSn8";
-            this.lblDriverSn8.Size = new System.Drawing.Size(82, 26);
+            this.lblDriverSn8.Size = new System.Drawing.Size(0, 26);
             this.lblDriverSn8.TabIndex = 24;
-            this.lblDriverSn8.Text = "label18";
             // 
             // lblDriverSn3
             // 
@@ -264,9 +263,8 @@ namespace genasys_test_viewer
             this.lblDriverSn3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblDriverSn3.Location = new System.Drawing.Point(381, 52);
             this.lblDriverSn3.Name = "lblDriverSn3";
-            this.lblDriverSn3.Size = new System.Drawing.Size(82, 26);
+            this.lblDriverSn3.Size = new System.Drawing.Size(0, 26);
             this.lblDriverSn3.TabIndex = 19;
-            this.lblDriverSn3.Text = "label13";
             // 
             // lblDriverSn7
             // 
@@ -274,9 +272,8 @@ namespace genasys_test_viewer
             this.lblDriverSn7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblDriverSn7.Location = new System.Drawing.Point(381, 156);
             this.lblDriverSn7.Name = "lblDriverSn7";
-            this.lblDriverSn7.Size = new System.Drawing.Size(82, 26);
+            this.lblDriverSn7.Size = new System.Drawing.Size(0, 26);
             this.lblDriverSn7.TabIndex = 23;
-            this.lblDriverSn7.Text = "label17";
             // 
             // lblDriverSn5
             // 
@@ -284,9 +281,8 @@ namespace genasys_test_viewer
             this.lblDriverSn5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblDriverSn5.Location = new System.Drawing.Point(381, 104);
             this.lblDriverSn5.Name = "lblDriverSn5";
-            this.lblDriverSn5.Size = new System.Drawing.Size(82, 26);
+            this.lblDriverSn5.Size = new System.Drawing.Size(0, 26);
             this.lblDriverSn5.TabIndex = 21;
-            this.lblDriverSn5.Text = "label15";
             // 
             // lblDriverSn6
             // 
@@ -294,9 +290,8 @@ namespace genasys_test_viewer
             this.lblDriverSn6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblDriverSn6.Location = new System.Drawing.Point(381, 130);
             this.lblDriverSn6.Name = "lblDriverSn6";
-            this.lblDriverSn6.Size = new System.Drawing.Size(82, 26);
+            this.lblDriverSn6.Size = new System.Drawing.Size(0, 26);
             this.lblDriverSn6.TabIndex = 22;
-            this.lblDriverSn6.Text = "label16";
             // 
             // lblDriverSn4
             // 
@@ -304,9 +299,8 @@ namespace genasys_test_viewer
             this.lblDriverSn4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblDriverSn4.Location = new System.Drawing.Point(381, 78);
             this.lblDriverSn4.Name = "lblDriverSn4";
-            this.lblDriverSn4.Size = new System.Drawing.Size(82, 26);
+            this.lblDriverSn4.Size = new System.Drawing.Size(0, 26);
             this.lblDriverSn4.TabIndex = 20;
-            this.lblDriverSn4.Text = "label14";
             // 
             // lblDriverSn2
             // 
@@ -314,9 +308,8 @@ namespace genasys_test_viewer
             this.lblDriverSn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblDriverSn2.Location = new System.Drawing.Point(381, 26);
             this.lblDriverSn2.Name = "lblDriverSn2";
-            this.lblDriverSn2.Size = new System.Drawing.Size(82, 26);
+            this.lblDriverSn2.Size = new System.Drawing.Size(0, 26);
             this.lblDriverSn2.TabIndex = 18;
-            this.lblDriverSn2.Text = "label12";
             // 
             // lblDriverSn1
             // 
@@ -324,9 +317,8 @@ namespace genasys_test_viewer
             this.lblDriverSn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblDriverSn1.Location = new System.Drawing.Point(381, 0);
             this.lblDriverSn1.Name = "lblDriverSn1";
-            this.lblDriverSn1.Size = new System.Drawing.Size(82, 26);
+            this.lblDriverSn1.Size = new System.Drawing.Size(0, 26);
             this.lblDriverSn1.TabIndex = 17;
-            this.lblDriverSn1.Text = "label11";
             // 
             // lblCompSn10
             // 
@@ -334,9 +326,9 @@ namespace genasys_test_viewer
             this.lblCompSn10.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblCompSn10.Location = new System.Drawing.Point(192, 234);
             this.lblCompSn10.Name = "lblCompSn10";
-            this.lblCompSn10.Size = new System.Drawing.Size(82, 26);
+            this.lblCompSn10.Size = new System.Drawing.Size(0, 26);
             this.lblCompSn10.TabIndex = 16;
-            this.lblCompSn10.Text = "label10";
+            this.lblCompSn10.Click += new System.EventHandler(this.lblCompSn10_Click);
             // 
             // lblCompSn9
             // 
@@ -344,9 +336,8 @@ namespace genasys_test_viewer
             this.lblCompSn9.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblCompSn9.Location = new System.Drawing.Point(192, 208);
             this.lblCompSn9.Name = "lblCompSn9";
-            this.lblCompSn9.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn9.Size = new System.Drawing.Size(0, 26);
             this.lblCompSn9.TabIndex = 15;
-            this.lblCompSn9.Text = "label9";
             // 
             // lblCompSn8
             // 
@@ -354,9 +345,8 @@ namespace genasys_test_viewer
             this.lblCompSn8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblCompSn8.Location = new System.Drawing.Point(192, 182);
             this.lblCompSn8.Name = "lblCompSn8";
-            this.lblCompSn8.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn8.Size = new System.Drawing.Size(0, 26);
             this.lblCompSn8.TabIndex = 14;
-            this.lblCompSn8.Text = "label8";
             // 
             // lblCompSn4
             // 
@@ -364,9 +354,8 @@ namespace genasys_test_viewer
             this.lblCompSn4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblCompSn4.Location = new System.Drawing.Point(192, 78);
             this.lblCompSn4.Name = "lblCompSn4";
-            this.lblCompSn4.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn4.Size = new System.Drawing.Size(0, 26);
             this.lblCompSn4.TabIndex = 10;
-            this.lblCompSn4.Text = "label4";
             // 
             // lblCompSn6
             // 
@@ -374,9 +363,8 @@ namespace genasys_test_viewer
             this.lblCompSn6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblCompSn6.Location = new System.Drawing.Point(192, 130);
             this.lblCompSn6.Name = "lblCompSn6";
-            this.lblCompSn6.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn6.Size = new System.Drawing.Size(0, 26);
             this.lblCompSn6.TabIndex = 12;
-            this.lblCompSn6.Text = "label6";
             // 
             // lblCompSn5
             // 
@@ -384,9 +372,8 @@ namespace genasys_test_viewer
             this.lblCompSn5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblCompSn5.Location = new System.Drawing.Point(192, 104);
             this.lblCompSn5.Name = "lblCompSn5";
-            this.lblCompSn5.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn5.Size = new System.Drawing.Size(0, 26);
             this.lblCompSn5.TabIndex = 11;
-            this.lblCompSn5.Text = "label5";
             // 
             // lblCompSn7
             // 
@@ -394,9 +381,8 @@ namespace genasys_test_viewer
             this.lblCompSn7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblCompSn7.Location = new System.Drawing.Point(192, 156);
             this.lblCompSn7.Name = "lblCompSn7";
-            this.lblCompSn7.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn7.Size = new System.Drawing.Size(0, 26);
             this.lblCompSn7.TabIndex = 13;
-            this.lblCompSn7.Text = "label7";
             // 
             // lblCompSn3
             // 
@@ -404,9 +390,8 @@ namespace genasys_test_viewer
             this.lblCompSn3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblCompSn3.Location = new System.Drawing.Point(192, 52);
             this.lblCompSn3.Name = "lblCompSn3";
-            this.lblCompSn3.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn3.Size = new System.Drawing.Size(0, 26);
             this.lblCompSn3.TabIndex = 9;
-            this.lblCompSn3.Text = "label3";
             // 
             // lblCompSn2
             // 
@@ -414,9 +399,8 @@ namespace genasys_test_viewer
             this.lblCompSn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblCompSn2.Location = new System.Drawing.Point(192, 26);
             this.lblCompSn2.Name = "lblCompSn2";
-            this.lblCompSn2.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn2.Size = new System.Drawing.Size(0, 26);
             this.lblCompSn2.TabIndex = 8;
-            this.lblCompSn2.Text = "label2";
             // 
             // lblCompSn1
             // 
@@ -424,9 +408,8 @@ namespace genasys_test_viewer
             this.lblCompSn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblCompSn1.Location = new System.Drawing.Point(192, 0);
             this.lblCompSn1.Name = "lblCompSn1";
-            this.lblCompSn1.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn1.Size = new System.Drawing.Size(0, 26);
             this.lblCompSn1.TabIndex = 7;
-            this.lblCompSn1.Text = "label1";
             // 
             // lblOperator
             // 
@@ -434,9 +417,8 @@ namespace genasys_test_viewer
             this.lblOperator.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblOperator.Location = new System.Drawing.Point(3, 0);
             this.lblOperator.Name = "lblOperator";
-            this.lblOperator.Size = new System.Drawing.Size(70, 26);
+            this.lblOperator.Size = new System.Drawing.Size(0, 26);
             this.lblOperator.TabIndex = 0;
-            this.lblOperator.Text = "label1";
             // 
             // lblDate
             // 
@@ -444,9 +426,8 @@ namespace genasys_test_viewer
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblDate.Location = new System.Drawing.Point(3, 26);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(70, 26);
+            this.lblDate.Size = new System.Drawing.Size(0, 26);
             this.lblDate.TabIndex = 1;
-            this.lblDate.Text = "label2";
             // 
             // lblTime
             // 
@@ -454,9 +435,8 @@ namespace genasys_test_viewer
             this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblTime.Location = new System.Drawing.Point(3, 52);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(70, 26);
+            this.lblTime.Size = new System.Drawing.Size(0, 26);
             this.lblTime.TabIndex = 2;
-            this.lblTime.Text = "label3";
             // 
             // lblWoNum
             // 
@@ -464,9 +444,8 @@ namespace genasys_test_viewer
             this.lblWoNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblWoNum.Location = new System.Drawing.Point(3, 78);
             this.lblWoNum.Name = "lblWoNum";
-            this.lblWoNum.Size = new System.Drawing.Size(70, 26);
+            this.lblWoNum.Size = new System.Drawing.Size(0, 26);
             this.lblWoNum.TabIndex = 3;
-            this.lblWoNum.Text = "label4";
             // 
             // lblModel
             // 
@@ -474,9 +453,8 @@ namespace genasys_test_viewer
             this.lblModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblModel.Location = new System.Drawing.Point(3, 104);
             this.lblModel.Name = "lblModel";
-            this.lblModel.Size = new System.Drawing.Size(70, 26);
+            this.lblModel.Size = new System.Drawing.Size(0, 26);
             this.lblModel.TabIndex = 4;
-            this.lblModel.Text = "label5";
             // 
             // lblSoftwareVer
             // 
@@ -484,9 +462,8 @@ namespace genasys_test_viewer
             this.lblSoftwareVer.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblSoftwareVer.Location = new System.Drawing.Point(3, 130);
             this.lblSoftwareVer.Name = "lblSoftwareVer";
-            this.lblSoftwareVer.Size = new System.Drawing.Size(70, 26);
+            this.lblSoftwareVer.Size = new System.Drawing.Size(0, 26);
             this.lblSoftwareVer.TabIndex = 5;
-            this.lblSoftwareVer.Text = "label6";
             // 
             // lblRemarks
             // 
@@ -494,9 +471,8 @@ namespace genasys_test_viewer
             this.lblRemarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.lblRemarks.Location = new System.Drawing.Point(3, 156);
             this.lblRemarks.Name = "lblRemarks";
-            this.lblRemarks.Size = new System.Drawing.Size(70, 26);
+            this.lblRemarks.Size = new System.Drawing.Size(0, 26);
             this.lblRemarks.TabIndex = 6;
-            this.lblRemarks.Text = "label7";
             // 
             // lblTitle
             // 
@@ -504,10 +480,8 @@ namespace genasys_test_viewer
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
             this.lblTitle.Location = new System.Drawing.Point(2, 6);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(278, 37);
+            this.lblTitle.Size = new System.Drawing.Size(0, 37);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Unit ##########";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnResize
             // 
@@ -550,18 +524,6 @@ namespace genasys_test_viewer
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtUnitSnValue;
-        private System.Windows.Forms.Label lblUnitSnHeader;
-        private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.Label lblResultNum;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button btnResize;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Label lblTitle;
-
         private List<List<string>> allSnTests;
         private string unitSn;
         private int opColNum;
@@ -576,6 +538,17 @@ namespace genasys_test_viewer
         private List<int> compSnColNums;
         private List<int> driverSnColNums;
         private List<int> passFailColNums;
+
+        private System.Windows.Forms.TextBox txtUnitSnValue;
+        private System.Windows.Forms.Label lblUnitSnHeader;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Label lblResultNum;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button btnResize;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblOperator;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblTime;

@@ -41,14 +41,13 @@ namespace genasys_test_viewer
 
             // Display number of tests found for that particular unit SN.
             this.lblResultNum.Text = allSnTests.Count + Constants.LBL_TESTS_FOUND;
-            
+
             // Iterating through each test in List<List<string>>.
             for (int i = 0; i < allSnTests.Count; i++)
             {
-
                 // Determines if test has passed or failed from data.
-                string status = allSnTests[i][unitPassFailColNum].Equals(Constants.LBL_PASSED) 
-                    ? Constants.LBL_PASSED 
+                string status = allSnTests[i][unitPassFailColNum].Equals(Constants.LBL_PASSED)
+                    ? Constants.LBL_PASSED
                     : Constants.LBL_FAILED;
 
                 // Find date and time for each row in listbox.
@@ -66,35 +65,112 @@ namespace genasys_test_viewer
             // If selected item is "invalid", return.
             if (listBox1.SelectedItem == null) return;
 
-            
             // Format and set title for panel 2.
-            string title = "Unit " + unitSn;
-            this.lblTitle.Text = title;
+            this.lblTitle.Text = "Unit " + unitSn;
 
             // The index of the selected test.
-            int selectIndex = listBox1.FindString(listBox1.SelectedItem.ToString());
+            int selectionIndex = listBox1.FindString(listBox1.SelectedItem.ToString());
 
-            // Get info from selected test.
-            string op = allSnTests[selectIndex][opColNum].ToUpper();
-            string date = allSnTests[selectIndex][dateColNum];
-            string time = allSnTests[selectIndex][timeColNum];
-            string woNum = allSnTests[selectIndex][woNumColNum];
-            string model = allSnTests[selectIndex][modelColNum];
-            string softwareVer = allSnTests[selectIndex][softwareColNum];
-            string remarks = allSnTests[selectIndex][remarksColNum];
+            // Get and set info from selected test.
+            string op = allSnTests[selectionIndex][opColNum].ToUpper();
+            string date = allSnTests[selectionIndex][dateColNum];
+            string time = allSnTests[selectionIndex][timeColNum];
+            string woNum = allSnTests[selectionIndex][woNumColNum];
+            string model = allSnTests[selectionIndex][modelColNum];
+            string softwareVer = allSnTests[selectionIndex][softwareColNum];
+            string remarks = allSnTests[selectionIndex][remarksColNum];
+
+            if (op.Trim() != "") this.lblOperator.Text = Constants.CHT_HEADER_OPERATOR + Constants.COLON + op;
+            if (date.Trim() != "") this.lblDate.Text = Constants.CHT_HEADER_DATE + Constants.COLON + date;
+            if (time.Trim() != "") this.lblTime.Text = Constants.CHT_HEADER_TIME + Constants.COLON + time;
+            if (woNum.Trim() != "") this.lblWoNum.Text = Constants.CHT_HEADER_WO_NUM + Constants.COLON + woNum;
+            if (model.Trim() != "") this.lblModel.Text = Constants.CHT_HEADER_MODEL + Constants.COLON + model;
+            if (softwareVer.Trim() != "") this.lblSoftwareVer.Text = Constants.CHT_HEADER_SOFTWARE_VER + Constants.COLON + softwareVer;
+            if (remarks.Trim() != "") this.lblRemarks.Text = Constants.CHT_HEADER_REMARKS + Constants.COLON + remarks;
+
+            for (int i = 0; i < compSnColNums.Count; i++)
+            {
+                string lblHeader = GetHeaderStrFromColNum(compSnColNums[i]);
+                string lblValue = allSnTests[selectionIndex][compSnColNums[i]];
+                if (lblValue.Trim() == "") break;
+                string label = lblHeader + Constants.COLON + lblValue;
+                switch (i)
+                {
+                    case 0:
+                        this.lblCompSn1.Text = label;
+                        break;
+                    case 1:
+                        this.lblCompSn2.Text = label;
+                        break;
+                    case 2:
+                        this.lblCompSn3.Text = label;
+                        break;
+                    case 3:
+                        this.lblCompSn4.Text = label;
+                        break;
+                    case 4:
+                        this.lblCompSn5.Text = label;
+                        break;
+                    case 5:
+                        this.lblCompSn6.Text = label;
+                        break;
+                    case 6:
+                        this.lblCompSn7.Text = label;
+                        break;
+                    case 7:
+                        this.lblCompSn8.Text = label;
+                        break;
+                    case 8:
+                        this.lblCompSn9.Text = label;
+                        break;
+                    case 9:
+                        this.lblCompSn10.Text = label;
+                        break;
+                    default:
+                        throw new IndexOutOfRangeException(Constants.ERR_5);
+                }
+            }
+
+            for (int i = 0; i < driverSnColNums.Count; i++)
+            {
+                string lblHeader = GetHeaderStrFromColNum(driverSnColNums[i]);
+                string lblValue = allSnTests[selectionIndex][driverSnColNums[i]];
+                if (lblValue.Trim() == "") break;
+                string label = lblHeader + Constants.COLON + lblValue;
+                switch (i)
+                {
+                    case 0:
+                        this.lblDriverSn1.Text = label;
+                        break;
+                    case 1:
+                        this.lblDriverSn2.Text = label;
+                        break;
+                    case 2:
+                        this.lblDriverSn3.Text = label;
+                        break;
+                    case 3:
+                        this.lblDriverSn4.Text = label;
+                        break;
+                    case 4:
+                        this.lblDriverSn5.Text = label;
+                        break;
+                    case 5:
+                        this.lblDriverSn6.Text = label;
+                        break;
+                    case 6:
+                        this.lblDriverSn7.Text = label;
+                        break;
+                    case 7:
+                        this.lblDriverSn8.Text = label;
+                        break;
+                    default:
+                        throw new IndexOutOfRangeException(Constants.ERR_6);
+                }
+            }
+
+            // string unitPassFail = allSnTests[selectionIndex][unitPassFailColNum];
 
 
-
-            string unitPassFail = allSnTests[selectIndex][unitPassFailColNum];
-
-            // Set info from selected test.
-            this.lblOperator.Text = Constants.CHT_HEADER_OPERATOR + Constants.COLON + op;
-            this.lblDate.Text = Constants.CHT_HEADER_DATE + Constants.COLON + date;
-            this.lblTime.Text = Constants.CHT_HEADER_TIME + Constants.COLON + time;
-            this.lblWoNum.Text = Constants.CHT_HEADER_WO_NUM + Constants.COLON + woNum;
-            this.lblModel.Text = Constants.CHT_HEADER_MODEL + Constants.COLON + model;
-            this.lblSoftwareVer.Text = Constants.CHT_HEADER_SOFTWARE_VER + Constants.COLON + softwareVer;
-            this.lblRemarks.Text = Constants.CHT_HEADER_REMARKS + Constants.COLON + remarks;
         }
 
         // Triggers when the listbox is drawn.
@@ -104,11 +180,11 @@ namespace genasys_test_viewer
             e.DrawBackground();
 
             // Sets selection to yellow.
-            Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) 
+            Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
                 ? Brushes.WhiteSmoke
                 : new SolidBrush(e.BackColor);
             e.Graphics.FillRectangle(brush, e.Bounds);
-            
+
             // If test is a pass, make the forecolor green. Else, make it red.
             if (e.Index < 0) return;
             string text = ((ListBox)sender).Items[e.Index].ToString();
@@ -116,14 +192,15 @@ namespace genasys_test_viewer
             {
                 brush = Brushes.Green;
             }
-            else {
+            else
+            {
                 brush = Brushes.Red;
             }
             e.Graphics.DrawString(
                 text,
-                e.Font, 
-                brush, 
-                e.Bounds, 
+                e.Font,
+                brush,
+                e.Bounds,
                 StringFormat.GenericDefault
             );
             e.DrawFocusRectangle();
@@ -198,8 +275,9 @@ namespace genasys_test_viewer
 
             // Column numbers from substrings.
             this.compSnColNums = GetColNumsFromHeaderSubstr(Constants.CHT_HEADER_SN)
-                .Where(x => !x.ToString()
-                .Contains(Constants.CHT_HEADER_DRIVER))
+                .Where(x =>
+                    !GetHeaderStrFromColNum(x).Equals(Constants.CHT_HEADER_UNIT_SN) &&
+                    !GetHeaderStrFromColNum(x).Contains(Constants.CHT_HEADER_DRIVER))
                 .ToList();
             this.driverSnColNums = GetColNumsFromHeaderSubstr(Constants.CHT_HEADER_DRIVER);
         }
@@ -243,9 +321,9 @@ namespace genasys_test_viewer
         {
             try
             {
-                return allSnTests[0][colNum];
+                return File.ReadLines(Constants.PATH).First().Split(',')[colNum];
             }
-            catch(Exception)
+            catch (Exception)
             {
                 throw new System.IO.FileFormatException(Constants.ERR_4);
             }
@@ -271,6 +349,11 @@ namespace genasys_test_viewer
             }
             allTestsFromSn.Reverse();
             return allTestsFromSn;
+        }
+
+        private void lblCompSn10_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
