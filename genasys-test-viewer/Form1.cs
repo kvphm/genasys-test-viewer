@@ -280,7 +280,7 @@ namespace genasys_test_viewer
                         break;
                     case Constants.LBL_NT:
                     default:
-                        color = Color.Black;
+                        color = Color.Gray;
                         break;
                 }
                 using (Brush brush = new SolidBrush(color))

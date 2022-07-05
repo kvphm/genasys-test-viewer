@@ -212,6 +212,7 @@ namespace genasys_test_viewer
             this.testTreeView.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.testTreeView.Location = new System.Drawing.Point(9, 344);
             this.testTreeView.Name = "testTreeView";
+            this.testTreeView.Scrollable = false;
             this.testTreeView.Size = new System.Drawing.Size(561, 402);
             this.testTreeView.TabIndex = 26;
             this.testTreeView.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.testTreeView_DrawNode);
