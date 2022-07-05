@@ -51,18 +51,9 @@ namespace genasys_test_viewer
                     ? Constants.LBL_PASSED 
                     : Constants.LBL_FAILED;
 
-                // Find date and time for each row in listbox. If there's no date and time,
-                // FileFormatException will be thrown.
+                // Find date and time for each row in listbox.
                 string date = allSnTests[i][dateColNum];
-                if (date.Trim().Equals(""))
-                {
-                    throw new System.IO.FileFormatException(Constants.ERR_2 + (i + 1));
-                }
                 string time = allSnTests[i][timeColNum];
-                if (time.Trim().Equals(""))
-                {
-                    throw new System.IO.FileFormatException(Constants.ERR_3 + (i + 1));
-                }
 
                 // Format text and add a new row to the listbox.
                 this.listBox1.Items.Add(date + " " + time + " - " + status);
@@ -88,7 +79,7 @@ namespace genasys_test_viewer
             string time = allSnTests[selectIndex][timeColNum];
             string woNum = allSnTests[selectIndex][woNumColNum];
             string model = allSnTests[selectIndex][modelColNum];
-
+            
             string unitPassFail = allSnTests[selectIndex][unitPassFailColNum];
 
 
@@ -115,20 +106,15 @@ namespace genasys_test_viewer
                 : new SolidBrush(e.BackColor);
             e.Graphics.FillRectangle(brush, e.Bounds);
             
-            // If test is a pass, make the forecolor green. Else, make it black.
+            // If test is a pass, make the forecolor green. Else, make it red.
             if (e.Index < 0) return;
             string text = ((ListBox)sender).Items[e.Index].ToString();
             if (text.EndsWith(Constants.LBL_PASSED))
             {
                 brush = Brushes.Green;
             }
-            else if (text.EndsWith(Constants.LBL_FAILED))
-            {
+            else {
                 brush = Brushes.Red;
-            }
-            else
-            {
-                brush = Brushes.Black;
             }
             e.Graphics.DrawString(
                 text,
