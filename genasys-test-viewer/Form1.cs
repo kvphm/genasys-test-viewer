@@ -88,16 +88,24 @@ namespace genasys_test_viewer
             // If selected item is "invalid", return.
             if (listBox1.SelectedItem == null) return;
 
-            // Get date of selected row.
-            string date = allSnTests[listBox1.FindString(listBox1.SelectedItem.ToString())][dateColNum]; 
-            
-            // Get time of selected row.
-            string time = allSnTests[listBox1.FindString(listBox1.SelectedItem.ToString())][timeColNum];
-            
             // Format and set title for panel 2.
-            string title = "Test of Unit " + unitSn + " at " + date + " " + time;
+            string title = "Unit " + unitSn;
             this.lblTitle.Text = title;
 
+            // The index of the selected item.
+            int selectIndex = listBox1.FindString(listBox1.SelectedItem.ToString());
+
+            // Get info from selected row.
+            string op = allSnTests[selectIndex][opColNum];
+            string date = allSnTests[selectIndex][dateColNum];
+            string time = allSnTests[selectIndex][timeColNum];
+            string woNum = allSnTests[selectIndex][woNumColNum];
+            string model = allSnTests[selectIndex][modelColNum];
+
+            string unitPassFail = allSnTests[selectIndex][unitPassFailColNum];
+
+            // TODO
+            // ...
         }
 
         // Triggers when the listbox is drawn.
@@ -108,11 +116,11 @@ namespace genasys_test_viewer
 
             // Sets selection to yellow.
             Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) 
-                ? Brushes.Yellow
+                ? Brushes.WhiteSmoke
                 : new SolidBrush(e.BackColor);
             e.Graphics.FillRectangle(brush, e.Bounds);
             
-            // If test is a pass, make the fore color green. Else, make it black.
+            // If test is a pass, make the forecolor green. Else, make it black.
             if (e.Index < 0) return;
             string text = ((ListBox)sender).Items[e.Index].ToString();
             if (text.EndsWith(Constants.LBL_PASSED))
@@ -145,12 +153,12 @@ namespace genasys_test_viewer
         {
             if (this.splitContainer1.Panel1Collapsed == true)
             {
-                this.btnResize.Text = "«";
+                this.btnResize.Text = Constants.MINIMIZE;
                 this.splitContainer1.Panel1Collapsed = false;
             }
             else
             {
-                this.btnResize.Text = "»";
+                this.btnResize.Text = Constants.MAXIMIZE;
                 this.splitContainer1.Panel1Collapsed = true;
             }
         }
@@ -167,8 +175,8 @@ namespace genasys_test_viewer
         private void setColNums()
         {
             // Column numbers from exact strings.
-            // this.operatorColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_OPERATOR);
-            // this.WOColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_WONum);
+            this.opColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_OPERATOR);
+            this.woNumColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_WONum);
             this.dateColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_DATE);
             this.timeColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_TIME);
             this.unitPassFailColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_PASS_FAIL);
@@ -249,6 +257,11 @@ namespace genasys_test_viewer
             }
             allTestsFromSn.Reverse();
             return allTestsFromSn;
+        }
+
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

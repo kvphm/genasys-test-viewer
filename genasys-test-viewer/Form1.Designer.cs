@@ -102,7 +102,7 @@ namespace genasys_test_viewer
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-73, 6);
+            this.pictureBox1.Location = new System.Drawing.Point(-72, 6);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(386, 88);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -130,8 +130,9 @@ namespace genasys_test_viewer
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.lblTitle);
-            this.splitContainer1.Size = new System.Drawing.Size(843, 534);
-            this.splitContainer1.SplitterDistance = 240;
+            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
+            this.splitContainer1.Size = new System.Drawing.Size(857, 534);
+            this.splitContainer1.SplitterDistance = 243;
             this.splitContainer1.TabIndex = 5;
             // 
             // listBox1
@@ -147,7 +148,7 @@ namespace genasys_test_viewer
             this.listBox1.ItemHeight = 25;
             this.listBox1.Location = new System.Drawing.Point(17, 166);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(206, 352);
+            this.listBox1.Size = new System.Drawing.Size(209, 352);
             this.listBox1.TabIndex = 5;
             this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox1_DrawItem);
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
@@ -162,7 +163,7 @@ namespace genasys_test_viewer
             this.tableLayoutPanel1.Controls.Add(this.txtUnitSnValue, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnSearch, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblUnitSnHeader, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(-78, 97);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(-77, 97);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -175,8 +176,9 @@ namespace genasys_test_viewer
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
             this.lblTitle.Location = new System.Drawing.Point(2, 6);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(0, 37);
+            this.lblTitle.Size = new System.Drawing.Size(293, 37);
             this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "This is a little test.";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnResize
@@ -187,7 +189,7 @@ namespace genasys_test_viewer
             this.btnResize.Name = "btnResize";
             this.btnResize.Size = new System.Drawing.Size(20, 28);
             this.btnResize.TabIndex = 5;
-            this.btnResize.Text = "«";
+            this.btnResize.Text = "🗕";
             this.btnResize.UseVisualStyleBackColor = true;
             this.btnResize.Click += new System.EventHandler(this.btnResize_Click);
             // 
@@ -232,18 +234,16 @@ namespace genasys_test_viewer
 
         private List<List<string>> allSnTests;
         private string unitSn;
-        private int operatorColNum;
-        private int WOColNum;
+        private int opColNum;
         private int dateColNum;
         private int timeColNum;
+        private int woNumColNum;
         private int unitPassFailColNum;
         private int modelColNum;
 
         private List<int> componentSnColNums;
         private List<int> driverSnColNums;
         private List<int> passFailColNums;
-
-
     }
 }
 

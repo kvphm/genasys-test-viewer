@@ -18,6 +18,8 @@ namespace genasys_test_viewer
         public const string ERR_4 = "Missing header row";
 
         // Miscellaneous constants.
+        public const string MINIMIZE = "🗕";
+        public const string MAXIMIZE = "🗖";
         public const string CHT_HEADER_UNIT_SN = "Unit SN";
         public const string CHT_HEADER_OPERATOR = "Operator";
         public const string CHT_HEADER_WONum = "WO No";
