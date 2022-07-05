@@ -130,7 +130,6 @@ namespace genasys_test_viewer
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.lblTitle);
-            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
             this.splitContainer1.Size = new System.Drawing.Size(857, 534);
             this.splitContainer1.SplitterDistance = 243;
             this.splitContainer1.TabIndex = 5;
