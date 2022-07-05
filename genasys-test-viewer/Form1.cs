@@ -62,11 +62,14 @@ namespace genasys_test_viewer
         // Triggers when a new row has been selected in the listbox.
         private void listBox1_SelectedIndexChanged(object sender, System.EventArgs e)
         {
+            // Clears test tree node.
+            testTreeView.Nodes.Clear();
+
             // If selected item is "invalid", return.
             if (listBox1.SelectedItem == null) return;
 
             // Format and set title for panel 2.
-            this.lblTitle.Text = "Unit " + unitSn;
+            this.lblTitle.Text = Constants.LBL_UNIT + unitSn;
 
             // The index of the selected test.
             int selectionIndex = listBox1.FindString(listBox1.SelectedItem.ToString());
@@ -92,7 +95,7 @@ namespace genasys_test_viewer
             {
                 string lblHeader = GetHeaderStrFromColNum(compSnColNums[i]);
                 string lblValue = allSnTests[selectionIndex][compSnColNums[i]];
-                if (lblValue.Trim() == "") break;
+                if (lblValue.Trim() == "") continue;
                 string label = lblHeader + Constants.COLON + lblValue;
                 switch (i)
                 {
@@ -135,7 +138,7 @@ namespace genasys_test_viewer
             {
                 string lblHeader = GetHeaderStrFromColNum(driverSnColNums[i]);
                 string lblValue = allSnTests[selectionIndex][driverSnColNums[i]];
-                if (lblValue.Trim() == "") break;
+                if (lblValue.Trim() == "") continue;
                 string label = lblHeader + Constants.COLON + lblValue;
                 switch (i)
                 {
@@ -168,14 +171,44 @@ namespace genasys_test_viewer
                 }
             }
 
-            // string unitPassFail = allSnTests[selectionIndex][unitPassFailColNum];
+            // Get test results from selected test.
+            string unitPassFail = allSnTests[selectionIndex][unitPassFailColNum];
+            System.Windows.Forms.TreeNode nodeRoot = new System.Windows.Forms.TreeNode(
+               Constants.CHT_HEADER_PASS_FAIL + Constants.COLON + unitPassFail
+            );
+            this.testTreeView.Nodes.Add(nodeRoot);
+            this.passFailColNums = new List<int>();
+            for (int i = driverSnColNums.Last() + 1; i < allSnTests[0].Count; i++)
+            {
+                if (allSnTests[selectionIndex][i].Equals(Constants.LBL_PASSED) || 
+                    allSnTests[selectionIndex][i].Equals(Constants.LBL_FAILED) || 
+                    allSnTests[selectionIndex][i].Equals(Constants.LBL_NT)
+                ) {
+                    passFailColNums.Add(i);
+                }
+                else
+                {
+                    break;
+                }
+            }
 
+            // Set test results from selected test to tree.
+            for (int i = 0; i < passFailColNums.Count; i++)
+            {
+                string lblHeader = GetHeaderStrFromColNum(passFailColNums[i]);
+                string lblValue = allSnTests[selectionIndex][passFailColNums[i]];
+                if (lblValue.Trim() == "") continue;
+                string label = lblHeader + Constants.COLON + lblValue;
+                nodeRoot.Nodes.Add(new System.Windows.Forms.TreeNode(Constants.TREE_SPACING + label));
+            }
 
+            // Expand the test tree upon selection.
+            testTreeView.ExpandAll();
         }
 
         // Triggers when the listbox is drawn.
         private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
-        {
+        { 
             // Draws background of listbox.
             e.DrawBackground();
 
@@ -207,6 +240,51 @@ namespace genasys_test_viewer
 
             // Needed because owner-set parameters. For horizontal scroll capabilities.
             this.listBox1.HorizontalExtent = Constants.HORIZONTAL_EXTENT_PANEL_1;
+        }
+
+        // Triggers when node in testTreeView are drawn.
+        private void testTreeView_DrawNode(object sender, DrawTreeNodeEventArgs e)
+        {
+            // The text of a node.
+            string text = e.Node.Text;
+
+            // Split text into array with two elements.
+            // First element contains entire string except last word.
+            // Second element contains last word.
+            string[] texts = new string[2];
+            texts[0] = text.Substring(0, text.LastIndexOf(' '));
+            texts[1] = e.Node.Text.Split(' ').Last();
+
+            // Color parts of string.
+            using (Font font = new Font(new System.Drawing.Font("Microsoft Sans Serif", 16F), FontStyle.Regular))
+            {
+                // First part of the string will have the default black color.
+                using (Brush brush = new SolidBrush(Color.Black))
+                {
+                    e.Graphics.DrawString(texts[0], font, brush, e.Bounds.Left, e.Bounds.Top);
+                }
+
+                // Second part of the string will have a color depending on the test verdict.
+                Color color;
+                switch(texts[1].ToString())
+                {
+                    case Constants.LBL_PASSED:
+                        color = Color.Green;
+                        break;
+                    case Constants.LBL_FAILED:
+                        color = Color.Red;
+                        break;
+                    case Constants.LBL_NT:
+                    default:
+                        color = Color.Black;
+                        break;
+                }
+                using (Brush brush = new SolidBrush(color))
+                {
+                    SizeF s = e.Graphics.MeasureString(texts[0], font);
+                    e.Graphics.DrawString(texts[1], font, brush, e.Bounds.Left + (int)s.Width, e.Bounds.Top);
+                }
+            }
         }
 
         // Triggers when the resize button is pressed.
@@ -258,6 +336,8 @@ namespace genasys_test_viewer
             this.lblDriverSn6.Text = "";
             this.lblDriverSn7.Text = "";
             this.lblDriverSn8.Text = "";
+
+            testTreeView.Nodes.Clear();
         }
 
         // Sets column number for each header.
@@ -351,9 +431,5 @@ namespace genasys_test_viewer
             return allTestsFromSn;
         }
 
-        private void lblCompSn10_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

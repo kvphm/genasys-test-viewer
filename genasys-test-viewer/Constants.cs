@@ -20,6 +20,7 @@ namespace genasys_test_viewer
         public const string ERR_6 = "Out of rows for column 3";
 
         // Miscellaneous constants.
+        public const string TREE_SPACING = "    ";
         public const int HORIZONTAL_EXTENT_PANEL_1 = 320;
         public const string CHT_HEADER_DATE = "Date";
         public const string CHT_HEADER_DRIVER = "Driver";
@@ -34,8 +35,10 @@ namespace genasys_test_viewer
         public const string CHT_HEADER_WO_NUM = "WO No";
         public const string COLON = ": ";
         public const string LBL_FAILED = "FAILED";
+        public const string LBL_NT = "NT";
         public const string LBL_PASSED = "PASSED";
         public const string LBL_TESTS_FOUND = " test(s) found";
+        public const string LBL_UNIT = "Unit ";
         public const string MAXIMIZE = "🗖";
         public const string MINIMIZE = "🗕";
     }
