@@ -47,32 +47,19 @@ namespace genasys_test_viewer
             {
 
                 // Determines if test has passed or failed from data.
-                string status;
-                if (allSnTests[i][unitPassFailColNum].Equals(Constants.LBL_PASSED))
-                {
-                    status = Constants.LBL_PASSED;
-                }
-                else
-                {
-                    if (allSnTests[i].Contains(Constants.LBL_FAILED))
-                    {
-                        status = Constants.LBL_FAILED;
-                    }
-                    else
-                    {
-                        status = Constants.LBL_INCONCLUSIVE;
-                    }
-                }
+                string status = allSnTests[i][unitPassFailColNum].Equals(Constants.LBL_PASSED) 
+                    ? Constants.LBL_PASSED 
+                    : Constants.LBL_FAILED;
 
                 // Find date and time for each row in listbox. If there's no date and time,
                 // FileFormatException will be thrown.
                 string date = allSnTests[i][dateColNum];
-                if (date.Equals(""))
+                if (date.Trim().Equals(""))
                 {
                     throw new System.IO.FileFormatException(Constants.ERR_2 + (i + 1));
                 }
                 string time = allSnTests[i][timeColNum];
-                if (time.Equals(""))
+                if (time.Trim().Equals(""))
                 {
                     throw new System.IO.FileFormatException(Constants.ERR_3 + (i + 1));
                 }
@@ -104,6 +91,14 @@ namespace genasys_test_viewer
 
             string unitPassFail = allSnTests[selectIndex][unitPassFailColNum];
 
+
+            Console.WriteLine(op);
+            Console.WriteLine(date);
+            Console.WriteLine(time);
+            Console.WriteLine(woNum);
+            Console.WriteLine(model);
+
+            Console.WriteLine(unitPassFail);
             // TODO
             // ...
         }
