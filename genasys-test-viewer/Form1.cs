@@ -178,28 +178,32 @@ namespace genasys_test_viewer
             );
             this.testTreeView.Nodes.Add(nodeRoot);
             this.passFailColNums = new List<int>();
-            for (int i = driverSnColNums.Last() + 1; i < allSnTests[0].Count; i++)
+            if (driverSnColNums.Count > 0)
             {
-                if (allSnTests[selectionIndex][i].Equals(Constants.LBL_PASSED) || 
-                    allSnTests[selectionIndex][i].Equals(Constants.LBL_FAILED) || 
-                    allSnTests[selectionIndex][i].Equals(Constants.LBL_NT)
-                ) {
-                    passFailColNums.Add(i);
-                }
-                else
+                for (int i = driverSnColNums.Last() + 1; i < allSnTests[0].Count; i++)
                 {
-                    break;
+                    if (allSnTests[selectionIndex][i].Equals(Constants.LBL_PASSED) ||
+                        allSnTests[selectionIndex][i].Equals(Constants.LBL_FAILED) ||
+                        allSnTests[selectionIndex][i].Equals(Constants.LBL_NT)
+                    )
+                    {
+                        passFailColNums.Add(i);
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
-            }
 
-            // Set test results from selected test to tree.
-            for (int i = 0; i < passFailColNums.Count; i++)
-            {
-                string lblHeader = GetHeaderStrFromColNum(passFailColNums[i]);
-                string lblValue = allSnTests[selectionIndex][passFailColNums[i]];
-                if (lblValue.Trim() == "") continue;
-                string label = lblHeader + Constants.COLON + lblValue;
-                nodeRoot.Nodes.Add(new System.Windows.Forms.TreeNode(Constants.TREE_SPACING + label));
+                // Set test results from selected test to tree.
+                for (int i = 0; i < passFailColNums.Count; i++)
+                {
+                    string lblHeader = GetHeaderStrFromColNum(passFailColNums[i]);
+                    string lblValue = allSnTests[selectionIndex][passFailColNums[i]];
+                    if (lblValue.Trim() == "") continue;
+                    string label = lblHeader + Constants.COLON + lblValue;
+                    nodeRoot.Nodes.Add(new System.Windows.Forms.TreeNode(Constants.TREE_SPACING + label));
+                }
             }
 
             // Expand the test tree upon selection.
