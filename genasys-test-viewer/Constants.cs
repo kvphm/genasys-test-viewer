@@ -18,19 +18,23 @@ namespace genasys_test_viewer
         public const string ERR_4 = "Missing header row";
 
         // Miscellaneous constants.
-        public const string MINIMIZE = "🗕";
-        public const string MAXIMIZE = "🗖";
-        public const string CHT_HEADER_UNIT_SN = "Unit SN";
-        public const string CHT_HEADER_OPERATOR = "Operator";
-        public const string CHT_HEADER_WONum = "WO No";
+        public const int HORIZONTAL_EXTENT_PANEL_1 = 320;
         public const string CHT_HEADER_DATE = "Date";
-        public const string CHT_HEADER_TIME = "Time";
-        public const string CHT_HEADER_MODEL = "Model";
         public const string CHT_HEADER_DRIVER = "Driver";
-        public const string CHT_HEADER_SN = "SN";
+        public const string CHT_HEADER_MODEL = "Model";
+        public const string CHT_HEADER_OPERATOR = "Operator";
         public const string CHT_HEADER_PASS_FAIL = "System P/F";
-        public const string LBL_TESTS_FOUND = " test(s) found";
-        public const string LBL_PASSED = "PASSED";
+        public const string CHT_HEADER_REMARKS = "Remarks";
+        public const string CHT_HEADER_SOFTWARE_VER = "Software Ver";
+        public const string CHT_HEADER_SN = "SN";
+        public const string CHT_HEADER_TIME = "Time";
+        public const string CHT_HEADER_UNIT_SN = "Unit SN";
+        public const string CHT_HEADER_WO_NUM = "WO No";
+        public const string COLON = ": ";
         public const string LBL_FAILED = "FAILED";
+        public const string LBL_PASSED = "PASSED";
+        public const string LBL_TESTS_FOUND = " test(s) found";
+        public const string MAXIMIZE = "🗖";
+        public const string MINIMIZE = "🗕";
     }
 }

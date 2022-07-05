@@ -25,7 +25,7 @@ namespace genasys_test_viewer
         private void btnSearch_Click(object sender, EventArgs e)
         {
             // Gets unit SN from user-inputted text box.
-            this.unitSn = this.txtUnitSnValue.Text;
+            this.unitSn = this.txtUnitSnValue.Text.Trim();
 
             // If textbox is empty or contains only whitespace characters, return. 
             if (String.IsNullOrEmpty(unitSn.Trim())) return;
@@ -66,32 +66,35 @@ namespace genasys_test_viewer
             // If selected item is "invalid", return.
             if (listBox1.SelectedItem == null) return;
 
+            
             // Format and set title for panel 2.
             string title = "Unit " + unitSn;
             this.lblTitle.Text = title;
 
-            // The index of the selected item.
+            // The index of the selected test.
             int selectIndex = listBox1.FindString(listBox1.SelectedItem.ToString());
 
-            // Get info from selected row.
-            string op = allSnTests[selectIndex][opColNum];
+            // Get info from selected test.
+            string op = allSnTests[selectIndex][opColNum].ToUpper();
             string date = allSnTests[selectIndex][dateColNum];
             string time = allSnTests[selectIndex][timeColNum];
             string woNum = allSnTests[selectIndex][woNumColNum];
             string model = allSnTests[selectIndex][modelColNum];
-            
+            string softwareVer = allSnTests[selectIndex][softwareColNum];
+            string remarks = allSnTests[selectIndex][remarksColNum];
+
+
+
             string unitPassFail = allSnTests[selectIndex][unitPassFailColNum];
 
-
-            Console.WriteLine(op);
-            Console.WriteLine(date);
-            Console.WriteLine(time);
-            Console.WriteLine(woNum);
-            Console.WriteLine(model);
-
-            Console.WriteLine(unitPassFail);
-            // TODO
-            // ...
+            // Set info from selected test.
+            this.lblOperator.Text = Constants.CHT_HEADER_OPERATOR + Constants.COLON + op;
+            this.lblDate.Text = Constants.CHT_HEADER_DATE + Constants.COLON + date;
+            this.lblTime.Text = Constants.CHT_HEADER_TIME + Constants.COLON + time;
+            this.lblWoNum.Text = Constants.CHT_HEADER_WO_NUM + Constants.COLON + woNum;
+            this.lblModel.Text = Constants.CHT_HEADER_MODEL + Constants.COLON + model;
+            this.lblSoftwareVer.Text = Constants.CHT_HEADER_SOFTWARE_VER + Constants.COLON + softwareVer;
+            this.lblRemarks.Text = Constants.CHT_HEADER_REMARKS + Constants.COLON + remarks;
         }
 
         // Triggers when the listbox is drawn.
@@ -126,7 +129,7 @@ namespace genasys_test_viewer
             e.DrawFocusRectangle();
 
             // Needed because owner-set parameters. For horizontal scroll capabilities.
-            this.listBox1.HorizontalExtent = 401;
+            this.listBox1.HorizontalExtent = Constants.HORIZONTAL_EXTENT_PANEL_1;
         }
 
         // Triggers when the resize button is pressed.
@@ -150,6 +153,34 @@ namespace genasys_test_viewer
         {
             this.listBox1.Items.Clear();
             this.lblTitle.Text = "";
+
+            this.lblOperator.Text = "";
+            this.lblDate.Text = "";
+            this.lblTime.Text = "";
+            this.lblWoNum.Text = "";
+            this.lblModel.Text = "";
+            this.lblSoftwareVer.Text = "";
+            this.lblRemarks.Text = "";
+
+            this.lblCompSn1.Text = "";
+            this.lblCompSn2.Text = "";
+            this.lblCompSn3.Text = "";
+            this.lblCompSn4.Text = "";
+            this.lblCompSn5.Text = "";
+            this.lblCompSn6.Text = "";
+            this.lblCompSn7.Text = "";
+            this.lblCompSn8.Text = "";
+            this.lblCompSn9.Text = "";
+            this.lblCompSn10.Text = "";
+
+            this.lblDriverSn1.Text = "";
+            this.lblDriverSn2.Text = "";
+            this.lblDriverSn3.Text = "";
+            this.lblDriverSn4.Text = "";
+            this.lblDriverSn5.Text = "";
+            this.lblDriverSn6.Text = "";
+            this.lblDriverSn7.Text = "";
+            this.lblDriverSn8.Text = "";
         }
 
         // Sets column number for each header.
@@ -157,14 +188,16 @@ namespace genasys_test_viewer
         {
             // Column numbers from exact strings.
             this.opColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_OPERATOR);
-            this.woNumColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_WONum);
+            this.woNumColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_WO_NUM);
             this.dateColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_DATE);
             this.timeColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_TIME);
             this.unitPassFailColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_PASS_FAIL);
             this.modelColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_MODEL);
+            this.softwareColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_SOFTWARE_VER);
+            this.remarksColNum = GetColNumFromHeaderStr(Constants.CHT_HEADER_REMARKS);
 
             // Column numbers from substrings.
-            this.componentSnColNums = GetColNumsFromHeaderSubstr(Constants.CHT_HEADER_SN)
+            this.compSnColNums = GetColNumsFromHeaderSubstr(Constants.CHT_HEADER_SN)
                 .Where(x => !x.ToString()
                 .Contains(Constants.CHT_HEADER_DRIVER))
                 .ToList();

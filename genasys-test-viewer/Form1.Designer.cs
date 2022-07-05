@@ -40,6 +40,32 @@ namespace genasys_test_viewer
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblDriverSn8 = new System.Windows.Forms.Label();
+            this.lblDriverSn3 = new System.Windows.Forms.Label();
+            this.lblDriverSn7 = new System.Windows.Forms.Label();
+            this.lblDriverSn5 = new System.Windows.Forms.Label();
+            this.lblDriverSn6 = new System.Windows.Forms.Label();
+            this.lblDriverSn4 = new System.Windows.Forms.Label();
+            this.lblDriverSn2 = new System.Windows.Forms.Label();
+            this.lblDriverSn1 = new System.Windows.Forms.Label();
+            this.lblCompSn10 = new System.Windows.Forms.Label();
+            this.lblCompSn9 = new System.Windows.Forms.Label();
+            this.lblCompSn8 = new System.Windows.Forms.Label();
+            this.lblCompSn4 = new System.Windows.Forms.Label();
+            this.lblCompSn6 = new System.Windows.Forms.Label();
+            this.lblCompSn5 = new System.Windows.Forms.Label();
+            this.lblCompSn7 = new System.Windows.Forms.Label();
+            this.lblCompSn3 = new System.Windows.Forms.Label();
+            this.lblCompSn2 = new System.Windows.Forms.Label();
+            this.lblCompSn1 = new System.Windows.Forms.Label();
+            this.lblOperator = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.lblWoNum = new System.Windows.Forms.Label();
+            this.lblModel = new System.Windows.Forms.Label();
+            this.lblSoftwareVer = new System.Windows.Forms.Label();
+            this.lblRemarks = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnResize = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -48,6 +74,7 @@ namespace genasys_test_viewer
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtUnitSnValue
@@ -69,7 +96,7 @@ namespace genasys_test_viewer
             this.lblUnitSnHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
             this.lblUnitSnHeader.Location = new System.Drawing.Point(3, 0);
             this.lblUnitSnHeader.Name = "lblUnitSnHeader";
-            this.lblUnitSnHeader.Size = new System.Drawing.Size(163, 32);
+            this.lblUnitSnHeader.Size = new System.Drawing.Size(163, 37);
             this.lblUnitSnHeader.TabIndex = 0;
             this.lblUnitSnHeader.Text = "Enter unit SN:";
             this.lblUnitSnHeader.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -102,7 +129,7 @@ namespace genasys_test_viewer
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-72, 6);
+            this.pictureBox1.Location = new System.Drawing.Point(-55, 6);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(386, 88);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -129,9 +156,10 @@ namespace genasys_test_viewer
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
+            this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel2);
             this.splitContainer1.Panel2.Controls.Add(this.lblTitle);
-            this.splitContainer1.Size = new System.Drawing.Size(857, 534);
-            this.splitContainer1.SplitterDistance = 243;
+            this.splitContainer1.Size = new System.Drawing.Size(857, 751);
+            this.splitContainer1.SplitterDistance = 277;
             this.splitContainer1.TabIndex = 5;
             // 
             // listBox1
@@ -147,7 +175,7 @@ namespace genasys_test_viewer
             this.listBox1.ItemHeight = 25;
             this.listBox1.Location = new System.Drawing.Point(17, 166);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(209, 352);
+            this.listBox1.Size = new System.Drawing.Size(244, 552);
             this.listBox1.TabIndex = 5;
             this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox1_DrawItem);
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
@@ -162,13 +190,313 @@ namespace genasys_test_viewer
             this.tableLayoutPanel1.Controls.Add(this.txtUnitSnValue, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnSearch, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblUnitSnHeader, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(-77, 97);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(-60, 97);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(454, 32);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(454, 37);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.AutoSize = true;
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.Controls.Add(this.lblDriverSn8, 2, 7);
+            this.tableLayoutPanel2.Controls.Add(this.lblDriverSn3, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.lblDriverSn7, 2, 6);
+            this.tableLayoutPanel2.Controls.Add(this.lblDriverSn5, 2, 4);
+            this.tableLayoutPanel2.Controls.Add(this.lblDriverSn6, 2, 5);
+            this.tableLayoutPanel2.Controls.Add(this.lblDriverSn4, 2, 3);
+            this.tableLayoutPanel2.Controls.Add(this.lblDriverSn2, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblDriverSn1, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblCompSn10, 1, 9);
+            this.tableLayoutPanel2.Controls.Add(this.lblCompSn9, 1, 8);
+            this.tableLayoutPanel2.Controls.Add(this.lblCompSn8, 1, 7);
+            this.tableLayoutPanel2.Controls.Add(this.lblCompSn4, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.lblCompSn6, 1, 5);
+            this.tableLayoutPanel2.Controls.Add(this.lblCompSn5, 1, 4);
+            this.tableLayoutPanel2.Controls.Add(this.lblCompSn7, 1, 6);
+            this.tableLayoutPanel2.Controls.Add(this.lblCompSn3, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.lblCompSn2, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblCompSn1, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblOperator, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblDate, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblTime, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.lblWoNum, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.lblModel, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.lblSoftwareVer, 0, 5);
+            this.tableLayoutPanel2.Controls.Add(this.lblRemarks, 0, 6);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 46);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 10;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(568, 260);
+            this.tableLayoutPanel2.TabIndex = 25;
+            // 
+            // lblDriverSn8
+            // 
+            this.lblDriverSn8.AutoSize = true;
+            this.lblDriverSn8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblDriverSn8.Location = new System.Drawing.Point(381, 182);
+            this.lblDriverSn8.Name = "lblDriverSn8";
+            this.lblDriverSn8.Size = new System.Drawing.Size(82, 26);
+            this.lblDriverSn8.TabIndex = 24;
+            this.lblDriverSn8.Text = "label18";
+            // 
+            // lblDriverSn3
+            // 
+            this.lblDriverSn3.AutoSize = true;
+            this.lblDriverSn3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblDriverSn3.Location = new System.Drawing.Point(381, 52);
+            this.lblDriverSn3.Name = "lblDriverSn3";
+            this.lblDriverSn3.Size = new System.Drawing.Size(82, 26);
+            this.lblDriverSn3.TabIndex = 19;
+            this.lblDriverSn3.Text = "label13";
+            // 
+            // lblDriverSn7
+            // 
+            this.lblDriverSn7.AutoSize = true;
+            this.lblDriverSn7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblDriverSn7.Location = new System.Drawing.Point(381, 156);
+            this.lblDriverSn7.Name = "lblDriverSn7";
+            this.lblDriverSn7.Size = new System.Drawing.Size(82, 26);
+            this.lblDriverSn7.TabIndex = 23;
+            this.lblDriverSn7.Text = "label17";
+            // 
+            // lblDriverSn5
+            // 
+            this.lblDriverSn5.AutoSize = true;
+            this.lblDriverSn5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblDriverSn5.Location = new System.Drawing.Point(381, 104);
+            this.lblDriverSn5.Name = "lblDriverSn5";
+            this.lblDriverSn5.Size = new System.Drawing.Size(82, 26);
+            this.lblDriverSn5.TabIndex = 21;
+            this.lblDriverSn5.Text = "label15";
+            // 
+            // lblDriverSn6
+            // 
+            this.lblDriverSn6.AutoSize = true;
+            this.lblDriverSn6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblDriverSn6.Location = new System.Drawing.Point(381, 130);
+            this.lblDriverSn6.Name = "lblDriverSn6";
+            this.lblDriverSn6.Size = new System.Drawing.Size(82, 26);
+            this.lblDriverSn6.TabIndex = 22;
+            this.lblDriverSn6.Text = "label16";
+            // 
+            // lblDriverSn4
+            // 
+            this.lblDriverSn4.AutoSize = true;
+            this.lblDriverSn4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblDriverSn4.Location = new System.Drawing.Point(381, 78);
+            this.lblDriverSn4.Name = "lblDriverSn4";
+            this.lblDriverSn4.Size = new System.Drawing.Size(82, 26);
+            this.lblDriverSn4.TabIndex = 20;
+            this.lblDriverSn4.Text = "label14";
+            // 
+            // lblDriverSn2
+            // 
+            this.lblDriverSn2.AutoSize = true;
+            this.lblDriverSn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblDriverSn2.Location = new System.Drawing.Point(381, 26);
+            this.lblDriverSn2.Name = "lblDriverSn2";
+            this.lblDriverSn2.Size = new System.Drawing.Size(82, 26);
+            this.lblDriverSn2.TabIndex = 18;
+            this.lblDriverSn2.Text = "label12";
+            // 
+            // lblDriverSn1
+            // 
+            this.lblDriverSn1.AutoSize = true;
+            this.lblDriverSn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblDriverSn1.Location = new System.Drawing.Point(381, 0);
+            this.lblDriverSn1.Name = "lblDriverSn1";
+            this.lblDriverSn1.Size = new System.Drawing.Size(82, 26);
+            this.lblDriverSn1.TabIndex = 17;
+            this.lblDriverSn1.Text = "label11";
+            // 
+            // lblCompSn10
+            // 
+            this.lblCompSn10.AutoSize = true;
+            this.lblCompSn10.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblCompSn10.Location = new System.Drawing.Point(192, 234);
+            this.lblCompSn10.Name = "lblCompSn10";
+            this.lblCompSn10.Size = new System.Drawing.Size(82, 26);
+            this.lblCompSn10.TabIndex = 16;
+            this.lblCompSn10.Text = "label10";
+            // 
+            // lblCompSn9
+            // 
+            this.lblCompSn9.AutoSize = true;
+            this.lblCompSn9.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblCompSn9.Location = new System.Drawing.Point(192, 208);
+            this.lblCompSn9.Name = "lblCompSn9";
+            this.lblCompSn9.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn9.TabIndex = 15;
+            this.lblCompSn9.Text = "label9";
+            // 
+            // lblCompSn8
+            // 
+            this.lblCompSn8.AutoSize = true;
+            this.lblCompSn8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblCompSn8.Location = new System.Drawing.Point(192, 182);
+            this.lblCompSn8.Name = "lblCompSn8";
+            this.lblCompSn8.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn8.TabIndex = 14;
+            this.lblCompSn8.Text = "label8";
+            // 
+            // lblCompSn4
+            // 
+            this.lblCompSn4.AutoSize = true;
+            this.lblCompSn4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblCompSn4.Location = new System.Drawing.Point(192, 78);
+            this.lblCompSn4.Name = "lblCompSn4";
+            this.lblCompSn4.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn4.TabIndex = 10;
+            this.lblCompSn4.Text = "label4";
+            // 
+            // lblCompSn6
+            // 
+            this.lblCompSn6.AutoSize = true;
+            this.lblCompSn6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblCompSn6.Location = new System.Drawing.Point(192, 130);
+            this.lblCompSn6.Name = "lblCompSn6";
+            this.lblCompSn6.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn6.TabIndex = 12;
+            this.lblCompSn6.Text = "label6";
+            // 
+            // lblCompSn5
+            // 
+            this.lblCompSn5.AutoSize = true;
+            this.lblCompSn5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblCompSn5.Location = new System.Drawing.Point(192, 104);
+            this.lblCompSn5.Name = "lblCompSn5";
+            this.lblCompSn5.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn5.TabIndex = 11;
+            this.lblCompSn5.Text = "label5";
+            // 
+            // lblCompSn7
+            // 
+            this.lblCompSn7.AutoSize = true;
+            this.lblCompSn7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblCompSn7.Location = new System.Drawing.Point(192, 156);
+            this.lblCompSn7.Name = "lblCompSn7";
+            this.lblCompSn7.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn7.TabIndex = 13;
+            this.lblCompSn7.Text = "label7";
+            // 
+            // lblCompSn3
+            // 
+            this.lblCompSn3.AutoSize = true;
+            this.lblCompSn3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblCompSn3.Location = new System.Drawing.Point(192, 52);
+            this.lblCompSn3.Name = "lblCompSn3";
+            this.lblCompSn3.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn3.TabIndex = 9;
+            this.lblCompSn3.Text = "label3";
+            // 
+            // lblCompSn2
+            // 
+            this.lblCompSn2.AutoSize = true;
+            this.lblCompSn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblCompSn2.Location = new System.Drawing.Point(192, 26);
+            this.lblCompSn2.Name = "lblCompSn2";
+            this.lblCompSn2.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn2.TabIndex = 8;
+            this.lblCompSn2.Text = "label2";
+            // 
+            // lblCompSn1
+            // 
+            this.lblCompSn1.AutoSize = true;
+            this.lblCompSn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblCompSn1.Location = new System.Drawing.Point(192, 0);
+            this.lblCompSn1.Name = "lblCompSn1";
+            this.lblCompSn1.Size = new System.Drawing.Size(70, 26);
+            this.lblCompSn1.TabIndex = 7;
+            this.lblCompSn1.Text = "label1";
+            // 
+            // lblOperator
+            // 
+            this.lblOperator.AutoSize = true;
+            this.lblOperator.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblOperator.Location = new System.Drawing.Point(3, 0);
+            this.lblOperator.Name = "lblOperator";
+            this.lblOperator.Size = new System.Drawing.Size(70, 26);
+            this.lblOperator.TabIndex = 0;
+            this.lblOperator.Text = "label1";
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblDate.Location = new System.Drawing.Point(3, 26);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(70, 26);
+            this.lblDate.TabIndex = 1;
+            this.lblDate.Text = "label2";
+            // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblTime.Location = new System.Drawing.Point(3, 52);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(70, 26);
+            this.lblTime.TabIndex = 2;
+            this.lblTime.Text = "label3";
+            // 
+            // lblWoNum
+            // 
+            this.lblWoNum.AutoSize = true;
+            this.lblWoNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblWoNum.Location = new System.Drawing.Point(3, 78);
+            this.lblWoNum.Name = "lblWoNum";
+            this.lblWoNum.Size = new System.Drawing.Size(70, 26);
+            this.lblWoNum.TabIndex = 3;
+            this.lblWoNum.Text = "label4";
+            // 
+            // lblModel
+            // 
+            this.lblModel.AutoSize = true;
+            this.lblModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblModel.Location = new System.Drawing.Point(3, 104);
+            this.lblModel.Name = "lblModel";
+            this.lblModel.Size = new System.Drawing.Size(70, 26);
+            this.lblModel.TabIndex = 4;
+            this.lblModel.Text = "label5";
+            // 
+            // lblSoftwareVer
+            // 
+            this.lblSoftwareVer.AutoSize = true;
+            this.lblSoftwareVer.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblSoftwareVer.Location = new System.Drawing.Point(3, 130);
+            this.lblSoftwareVer.Name = "lblSoftwareVer";
+            this.lblSoftwareVer.Size = new System.Drawing.Size(70, 26);
+            this.lblSoftwareVer.TabIndex = 5;
+            this.lblSoftwareVer.Text = "label6";
+            // 
+            // lblRemarks
+            // 
+            this.lblRemarks.AutoSize = true;
+            this.lblRemarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.lblRemarks.Location = new System.Drawing.Point(3, 156);
+            this.lblRemarks.Name = "lblRemarks";
+            this.lblRemarks.Size = new System.Drawing.Size(70, 26);
+            this.lblRemarks.TabIndex = 6;
+            this.lblRemarks.Text = "label7";
             // 
             // lblTitle
             // 
@@ -176,9 +504,9 @@ namespace genasys_test_viewer
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
             this.lblTitle.Location = new System.Drawing.Point(2, 6);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(293, 37);
+            this.lblTitle.Size = new System.Drawing.Size(278, 37);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "This is a little test.";
+            this.lblTitle.Text = "Unit ##########";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnResize
@@ -198,7 +526,7 @@ namespace genasys_test_viewer
             this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(892, 558);
+            this.ClientSize = new System.Drawing.Size(892, 775);
             this.Controls.Add(this.btnResize);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -215,6 +543,8 @@ namespace genasys_test_viewer
             this.splitContainer1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -240,10 +570,38 @@ namespace genasys_test_viewer
         private int woNumColNum;
         private int unitPassFailColNum;
         private int modelColNum;
+        private int softwareColNum;
+        private int remarksColNum;
 
-        private List<int> componentSnColNums;
+        private List<int> compSnColNums;
         private List<int> driverSnColNums;
         private List<int> passFailColNums;
+        private System.Windows.Forms.Label lblOperator;
+        private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Label lblWoNum;
+        private System.Windows.Forms.Label lblModel;
+        private System.Windows.Forms.Label lblRemarks;
+        private System.Windows.Forms.Label lblSoftwareVer;
+        private System.Windows.Forms.Label lblCompSn2;
+        private System.Windows.Forms.Label lblCompSn1;
+        private System.Windows.Forms.Label lblCompSn9;
+        private System.Windows.Forms.Label lblCompSn8;
+        private System.Windows.Forms.Label lblCompSn7;
+        private System.Windows.Forms.Label lblCompSn6;
+        private System.Windows.Forms.Label lblCompSn5;
+        private System.Windows.Forms.Label lblCompSn4;
+        private System.Windows.Forms.Label lblCompSn3;
+        private System.Windows.Forms.Label lblCompSn10;
+        private System.Windows.Forms.Label lblDriverSn2;
+        private System.Windows.Forms.Label lblDriverSn1;
+        private System.Windows.Forms.Label lblDriverSn8;
+        private System.Windows.Forms.Label lblDriverSn7;
+        private System.Windows.Forms.Label lblDriverSn6;
+        private System.Windows.Forms.Label lblDriverSn5;
+        private System.Windows.Forms.Label lblDriverSn4;
+        private System.Windows.Forms.Label lblDriverSn3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     }
 }
 
