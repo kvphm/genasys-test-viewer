@@ -203,9 +203,6 @@ namespace genasys_test_viewer
             // testTreeView
             // 
             this.testTreeView.AllowDrop = true;
-            this.testTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.testTreeView.BackColor = System.Drawing.SystemColors.Menu;
             this.testTreeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.testTreeView.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
@@ -219,8 +216,7 @@ namespace genasys_test_viewer
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.AutoScroll = true;
             this.tableLayoutPanel2.AutoSize = true;
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));

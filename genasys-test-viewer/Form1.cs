@@ -49,8 +49,8 @@ namespace genasys_test_viewer
         // Triggers when a new row has been selected in the listbox.
         private void listBox1_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            // Clears test tree node.
-            testTreeView.Nodes.Clear();
+            // Clears panel 2.
+            clearPanel2();
 
             // If selected item is null, return.
             if (listBox1.SelectedItem == null) return;
@@ -173,7 +173,7 @@ namespace genasys_test_viewer
                 string time = allSnTests[i][timeColNum];
 
                 // Format text and add a new row to the listbox.
-                this.listBox1.Items.Add(date + " " + time + " - " + status);
+                this.listBox1.Items.Add($"{date} {time} - {status}");
             }
         }
         
@@ -182,7 +182,13 @@ namespace genasys_test_viewer
         {
             // Clear listbox.
             this.listBox1.Items.Clear();
-            
+
+            // Clear panel 2.
+            clearPanel2();
+        }
+
+        private void clearPanel2()
+        {
             // Clear title.
             this.lblTitle.Text = "";
 
@@ -216,7 +222,7 @@ namespace genasys_test_viewer
             this.lblDriverSn6.Text = "";
             this.lblDriverSn7.Text = "";
             this.lblDriverSn8.Text = "";
-             
+
             // Clear test tree nodes.
             testTreeView.Nodes.Clear();
         }
@@ -309,7 +315,6 @@ namespace genasys_test_viewer
         private List<List<string>> GetAllTestsFromUnitSn(string unitSn)
         {
             List<List<string>> allTestsFromSn = new List<List<string>>();
-
             if (unitSn.Trim() != Constants.CHT_HEADER_UNIT_SN) {
                 using (var reader = new StreamReader(@Constants.PATH))
                 {
@@ -321,19 +326,28 @@ namespace genasys_test_viewer
                         // Parse data.
                         var line = reader.ReadLine();
                         var values = line.Split(';');
-                        String[] row = values[0].Split(',');
+                        List<String> row = values[0].Split(',').ToList();
 
                         // If unit SN matches, add row (as a list) into another list.
                         // Ignores header row.
                         if (row[unitSnCol] == unitSn)
                         {
+                            int headerRowSize = File.ReadLines(Constants.PATH).First().Split(',').Length;
+                            int selectedRowSize = row.Count;
+                            int elementsNeeded = headerRowSize - selectedRowSize;
+                            Console.WriteLine(elementsNeeded);
+                            for (int i = 0; i < elementsNeeded; i++)
+                            {
+                                row.Add("");
+                            }
                             allTestsFromSn.Add(new List<string>(row));
                         }
                     }
                 }
-
                 // To make list of tests ordered as latest first.
                 allTestsFromSn.Reverse();
+            
+                // Append list with empty strings if there are empty
             }
 
             // Return test data for selected unit SN.
@@ -346,15 +360,18 @@ namespace genasys_test_viewer
             // Set title.
             this.lblTitle.Text = Constants.LBL_UNIT + unitSn;
 
-            // Retrieve column 1 data.
-            string op = allSnTests[selectionIndex][opColNum];
-            string date = allSnTests[selectionIndex][dateColNum];
-            string time = allSnTests[selectionIndex][timeColNum];
-            string woNum = allSnTests[selectionIndex][woNumColNum];
-            string model = allSnTests[selectionIndex][modelColNum];
-            string softwareVer = allSnTests[selectionIndex][softwareColNum];
-            string remarks = allSnTests[selectionIndex][remarksColNum];
-            
+            // Selected row.
+            List<string> selectedRow = allSnTests[selectionIndex];
+
+            // Retrieve column 1 data. 
+            string op = selectedRow[opColNum];
+            string date = selectedRow[dateColNum];
+            string time = selectedRow[timeColNum];
+            string woNum = selectedRow[woNumColNum];
+            string model = selectedRow[modelColNum];
+            string softwareVer = selectedRow[softwareColNum];
+            string remarks = selectedRow[remarksColNum];
+
             // If field is not empty, set column 1 data (general info).
             if (op.Trim() != "") this.lblOperator.Text = Constants.CHT_HEADER_OPERATOR + Constants.COLON + op.ToUpper();
             if (date.Trim() != "") this.lblDate.Text = Constants.CHT_HEADER_DATE + Constants.COLON + date;
@@ -368,7 +385,7 @@ namespace genasys_test_viewer
             for (int i = 0; i < compSnColNums.Count; i++)
             {
                 string lblHeader = GetHeaderStrFromColNum(compSnColNums[i]);
-                string lblValue = allSnTests[selectionIndex][compSnColNums[i]];
+                string lblValue = selectedRow[compSnColNums[i]];
                 if (lblValue.Trim() == "") continue;
                 string label = lblHeader + Constants.COLON + lblValue;
                 switch (i)
@@ -412,7 +429,7 @@ namespace genasys_test_viewer
             for (int i = 0; i < driverSnColNums.Count; i++)
             {
                 string lblHeader = GetHeaderStrFromColNum(driverSnColNums[i]);
-                string lblValue = allSnTests[selectionIndex][driverSnColNums[i]];
+                string lblValue = selectedRow[driverSnColNums[i]];
                 if (lblValue.Trim() == "") continue;
                 string label = lblHeader + Constants.COLON + lblValue;
                 switch (i)
@@ -447,38 +464,41 @@ namespace genasys_test_viewer
             }
 
             // Get test results from selected test.
-            string unitPassFail = allSnTests[selectionIndex][unitPassFailColNum];
+            string unitPassFail = selectedRow[unitPassFailColNum];
             System.Windows.Forms.TreeNode nodeRoot = new System.Windows.Forms.TreeNode(
                Constants.CHT_HEADER_PASS_FAIL + Constants.COLON + unitPassFail
             );
             this.testTreeView.Nodes.Add(nodeRoot);
             this.passFailColNums = new List<int>();
-            if (driverSnColNums.Count > 0)
-            {
-                for (int i = driverSnColNums.Last() + 1; i < allSnTests[0].Count; i++)
-                {
-                    switch (allSnTests[selectionIndex][i])
-                    {
-                        case Constants.LBL_PASSED:
-                        case Constants.LBL_FAILED:
-                        case Constants.LBL_NT:
-                            passFailColNums.Add(i);
-                            break;
-                        default:
-                            break;
-                    }
-                }
 
-                // Set test results from selected test to tree.
-                for (int i = 0; i < passFailColNums.Count; i++)
+            bool wasInPfRegion = false;
+            for (int i = modelColNum + 1; i < allSnTests[0].Count; i++)
+            {
+                if (
+                    selectedRow[i].Equals(Constants.LBL_PASSED) ||
+                    selectedRow[i].Equals(Constants.LBL_FAILED) ||
+                    selectedRow[i].Equals(Constants.LBL_NT)
+                )
                 {
-                    string lblHeader = GetHeaderStrFromColNum(passFailColNums[i]);
-                    string lblValue = allSnTests[selectionIndex][passFailColNums[i]];
-                    if (lblValue.Trim() == "") continue;
-                    string label = lblHeader + Constants.COLON + lblValue;
-                    nodeRoot.Nodes.Add(new System.Windows.Forms.TreeNode(Constants.TREE_SPACING + label));
+                    wasInPfRegion = true;
+                    passFailColNums.Add(i);
+                }
+                else if (wasInPfRegion)
+                {
+                    break;
                 }
             }
+
+            // Set test results from selected test to tree.
+            for (int i = 0; i < passFailColNums.Count; i++)
+            {
+                string lblHeader = GetHeaderStrFromColNum(passFailColNums[i]);
+                string lblValue = selectedRow[passFailColNums[i]];
+                if (lblValue.Trim() == "") continue;
+                string label = lblHeader + Constants.COLON + lblValue;
+                nodeRoot.Nodes.Add(new System.Windows.Forms.TreeNode(Constants.TREE_SPACING + label));
+            }
+
         }
 
     }
