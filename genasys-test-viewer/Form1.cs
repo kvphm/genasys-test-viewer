@@ -332,6 +332,7 @@ namespace genasys_test_viewer
                         // Ignores header row.
                         if (row[unitSnCol] == unitSn)
                         {
+                            // Append empty strings if there are missing fields at end.
                             int headerRowSize = File.ReadLines(Constants.PATH).First().Split(',').Length;
                             int selectedRowSize = row.Count;
                             int elementsNeeded = headerRowSize - selectedRowSize;
@@ -346,8 +347,6 @@ namespace genasys_test_viewer
                 }
                 // To make list of tests ordered as latest first.
                 allTestsFromSn.Reverse();
-            
-                // Append list with empty strings if there are empty
             }
 
             // Return test data for selected unit SN.
