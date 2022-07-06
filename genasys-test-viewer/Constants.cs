@@ -19,6 +19,15 @@ namespace genasys_test_viewer
         public const string ERR_5 = "Out of rows for column 2";
         public const string ERR_6 = "Out of rows for column 3";
 
+        // Column numbers.
+        public const int UNIT_SN_COL_NUM = 0;
+        public const int OP_COL_NUM = 1;
+        public const int DATE_COL_NUM = 2;
+        public const int TIME_COL_NUM = 3;
+        public const int WO_NUM_COL_NUM = 4;
+        public const int UNIT_PASS_FAIL_COL_NUM = 5;
+        public const int MODEL_COL_NUM = 6;
+
         // Miscellaneous constants.
         public const string TREE_SPACING = "    ";
         public const int HORIZONTAL_EXTENT_PANEL_1 = 320;
@@ -41,5 +50,6 @@ namespace genasys_test_viewer
         public const string LBL_UNIT = "Unit ";
         public const string MAXIMIZE = "🗖";
         public const string MINIMIZE = "🗕";
+        public const string WARNING_SIGN = "⚠";
     }
 }

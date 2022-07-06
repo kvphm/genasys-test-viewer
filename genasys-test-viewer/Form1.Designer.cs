@@ -542,18 +542,13 @@ namespace genasys_test_viewer
         #endregion
         private List<List<string>> allSnTests;
         private string unitSn;
-        private int opColNum;
-        private int dateColNum;
-        private int timeColNum;
-        private int woNumColNum;
-        private int unitPassFailColNum;
-        private int modelColNum;
         private int softwareColNum;
         private int remarksColNum;
 
         private List<int> compSnColNums;
         private List<int> driverSnColNums;
         private List<int> passFailColNums;
+        private List<string> problematicSnList;
 
         private System.Windows.Forms.TextBox txtUnitSnValue;
         private System.Windows.Forms.Label lblUnitSnHeader;
