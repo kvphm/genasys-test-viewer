@@ -309,28 +309,32 @@ namespace genasys_test_viewer
         private List<List<string>> GetAllTestsFromUnitSn(string unitSn)
         {
             List<List<string>> allTestsFromSn = new List<List<string>>();
-            using (var reader = new StreamReader(@Constants.PATH))
-            {
-                int unitSnCol = GetColNumFromHeaderStr(Constants.CHT_HEADER_UNIT_SN);
-                
-                // Iterating through each line of .CSV file.
-                while (!reader.EndOfStream)
+
+            if (unitSn.Trim() != Constants.CHT_HEADER_UNIT_SN) {
+                using (var reader = new StreamReader(@Constants.PATH))
                 {
-                    // Parse data.
-                    var line = reader.ReadLine();
-                    var values = line.Split(';');
-                    String[] row = values[0].Split(',');
-                    
-                    // If unit SN matches, add row (as a list) into another list.
-                    if (row[unitSnCol] == unitSn)
+                    int unitSnCol = GetColNumFromHeaderStr(Constants.CHT_HEADER_UNIT_SN);
+
+                    // Iterating through each line of .CSV file.
+                    while (!reader.EndOfStream)
                     {
-                        allTestsFromSn.Add(new List<string>(row));
+                        // Parse data.
+                        var line = reader.ReadLine();
+                        var values = line.Split(';');
+                        String[] row = values[0].Split(',');
+
+                        // If unit SN matches, add row (as a list) into another list.
+                        // Ignores header row.
+                        if (row[unitSnCol] == unitSn)
+                        {
+                            allTestsFromSn.Add(new List<string>(row));
+                        }
                     }
                 }
-            }
 
-            // To make list of tests ordered as latest first.
-            allTestsFromSn.Reverse();
+                // To make list of tests ordered as latest first.
+                allTestsFromSn.Reverse();
+            }
 
             // Return test data for selected unit SN.
             return allTestsFromSn;
@@ -339,17 +343,20 @@ namespace genasys_test_viewer
         // Sets info on panel given the selection index.
         private void setPanel2Info(int selectionIndex)
         {
+            // Set title.
             this.lblTitle.Text = Constants.LBL_UNIT + unitSn;
 
-            string op = allSnTests[selectionIndex][opColNum].ToUpper();
+            // Retrieve column 1 data.
+            string op = allSnTests[selectionIndex][opColNum];
             string date = allSnTests[selectionIndex][dateColNum];
             string time = allSnTests[selectionIndex][timeColNum];
             string woNum = allSnTests[selectionIndex][woNumColNum];
             string model = allSnTests[selectionIndex][modelColNum];
             string softwareVer = allSnTests[selectionIndex][softwareColNum];
             string remarks = allSnTests[selectionIndex][remarksColNum];
-
-            if (op.Trim() != "") this.lblOperator.Text = Constants.CHT_HEADER_OPERATOR + Constants.COLON + op;
+            
+            // If field is not empty, set column 1 data (general info).
+            if (op.Trim() != "") this.lblOperator.Text = Constants.CHT_HEADER_OPERATOR + Constants.COLON + op.ToUpper();
             if (date.Trim() != "") this.lblDate.Text = Constants.CHT_HEADER_DATE + Constants.COLON + date;
             if (time.Trim() != "") this.lblTime.Text = Constants.CHT_HEADER_TIME + Constants.COLON + time;
             if (woNum.Trim() != "") this.lblWoNum.Text = Constants.CHT_HEADER_WO_NUM + Constants.COLON + woNum;
@@ -357,6 +364,7 @@ namespace genasys_test_viewer
             if (softwareVer.Trim() != "") this.lblSoftwareVer.Text = Constants.CHT_HEADER_SOFTWARE_VER + Constants.COLON + softwareVer;
             if (remarks.Trim() != "") this.lblRemarks.Text = Constants.CHT_HEADER_REMARKS + Constants.COLON + remarks;
 
+            // Get and set column 2 data (component SN).
             for (int i = 0; i < compSnColNums.Count; i++)
             {
                 string lblHeader = GetHeaderStrFromColNum(compSnColNums[i]);
@@ -400,6 +408,7 @@ namespace genasys_test_viewer
                 }
             }
 
+            // Get and set column 3 data (Driver SN).
             for (int i = 0; i < driverSnColNums.Count; i++)
             {
                 string lblHeader = GetHeaderStrFromColNum(driverSnColNums[i]);
