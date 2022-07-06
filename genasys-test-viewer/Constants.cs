@@ -9,7 +9,7 @@ namespace genasys_test_viewer
     static class Constants
     {
         // Path of the CSV file.
-        public const string PATH = "Z:\\Kevin Pham\\1000 Test Log (Post-Test).csv";
+        public const string PATH = "Z:\\Kevin Pham\\60-DEG wo Amp Test Log (Post-Test).csv";
 
         // Error messages.
         public const string ERR_1 = " column cannot be found";
@@ -18,6 +18,7 @@ namespace genasys_test_viewer
         public const string ERR_4 = "Missing header row";
         public const string ERR_5 = "Out of rows for column 2";
         public const string ERR_6 = "Out of rows for column 3";
+        public const string WARNING_CORRUPTED_DATA = "This test may contain corrupted data.";
 
         // Column numbers.
         public const int UNIT_SN_COL_NUM = 0;

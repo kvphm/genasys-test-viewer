@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace genasys_test_viewer
 {
@@ -83,7 +84,7 @@ namespace genasys_test_viewer
             // Test passed = green. Test failed = red.
             if (e.Index < 0) return;
             string text = ((ListBox)sender).Items[e.Index].ToString();
-            brush = text.EndsWith(Constants.LBL_PASSED) ? Brushes.Green : Brushes.Red;
+            brush = text.Contains(Constants.LBL_PASSED) ? Brushes.Green : Brushes.Red;
             e.Graphics.DrawString(
                 text,
                 e.Font,
@@ -130,8 +131,10 @@ namespace genasys_test_viewer
                         color = Color.Red;
                         break;
                     case Constants.LBL_NT:
-                    default:
                         color = Color.Gray;
+                        break;
+                    default:
+                        color = Color.Black;
                         break;
                 }
                 using (Brush brush = new SolidBrush(color))
@@ -189,6 +192,7 @@ namespace genasys_test_viewer
         {
             // Clear title.
             this.lblTitle.Text = "";
+            this.tipCorruptedData.RemoveAll();
 
             // Clear first column of second panel.
             this.lblOperator.Text = "";
@@ -261,7 +265,7 @@ namespace genasys_test_viewer
             {
                 if (allSnTests.Count == 0) continue;
                 else if (
-                    !headerRow[i].Contains(Constants.CHT_HEADER_DRIVER) &&
+                    !new Regex("Driver\\d SN").IsMatch(headerRow[i]) &&
                     !allSnTests.Last()[i].Equals(Constants.LBL_PASSED) &&
                     !allSnTests.Last()[i].Equals(Constants.LBL_FAILED) &&
                     !allSnTests.Last()[i].Equals(Constants.LBL_NT)
@@ -276,33 +280,18 @@ namespace genasys_test_viewer
             }
 
             // Sets driver SN.
-            this.compSnColNums = new List<int>();
-            this.driverSnColNums = GetColNumsFromHeaderSubstr(Constants.CHT_HEADER_DRIVER);
+            this.driverSnColNums = new List<int>();
+            for (int i = 0; i < headerRow.Length; i++)
+            {
+                if (new Regex("Driver\\d SN").IsMatch(headerRow[i]))
+                {
+                    this.driverSnColNums.Add(i);
+                }
+            }
 
             // Set miscellaneous data.
             this.softwareColNum = headerRow.Length - 2;
             this.remarksColNum = headerRow.Length - 1;
-        }
-
-        // Gets column number(s) from header name as substring.
-        private List<int> GetColNumsFromHeaderSubstr(string substr)
-        {
-            // List to store column numbers.
-            List<int> colNums = new List<int>();
-
-            // Header row array.
-            string[] headerRow = File.ReadLines(Constants.PATH).First().Split(',');
-            for (int i = 0; i < headerRow.Length; i++)
-            {
-                // If there is an element that contains substr, add element to colNums.
-                if (headerRow[i].Contains(substr))
-                {
-                    colNums.Add(i);
-                }
-            }
-
-            // Return a List of ColNums.
-            return colNums;
         }
 
         // Get header string from column number.
@@ -338,12 +327,12 @@ namespace genasys_test_viewer
 
                         // If unit SN matches, add row (as a list) into another list.
                         // Ignores header row.
-                        /*
                         if (row[unitSnCol] == unitSn)
                         {
-                            */
                             // Append empty strings if there are missing fields at end.
                             int headerRowSize = File.ReadLines(Constants.PATH).First().Split(',').Length;
+                            Console.WriteLine(File.ReadLines(Constants.PATH).First());
+                            return null;
                             int selectedRowSize = row.Count;
                             int elementsNeeded = headerRowSize - selectedRowSize;
                             if (elementsNeeded > 0) {
@@ -353,19 +342,17 @@ namespace genasys_test_viewer
                                 }
                             }
 
-                            // If data in rows have empty strings, disregarding the "Remarks" field,
-                            // this would mean that the data shown is problematic. Problematic SNs
-                            // will be added to problematicSnList.
-                            List<string> temp = new List<string>(row);
-                            temp.RemoveAt(row.Count - 1);
-                            if (temp.Contains("")) {
+                            Console.WriteLine(elementsNeeded);
+
+                            // Problematic SNs will be added to problematicSnList.
+                            if (isProblematic(row))
+                            {
                                 problematicSnList.Add(unitSn);
                             }
                             
                             // Add row into list of rows once data have been collected and parsed.
-                            allTestsFromSn.Add(new List<string>(row));
-                      
-                        //}
+                            allTestsFromSn.Add(new List<string>(row)); 
+                        }
                     }
                 }
                 // To make list of tests ordered as latest first.
@@ -381,12 +368,13 @@ namespace genasys_test_viewer
         {
             // Set title.
             this.unitSn = allSnTests[selectionIndex][Constants.UNIT_SN_COL_NUM];
-            string text = Constants.LBL_UNIT + unitSn;
+            string title = Constants.LBL_UNIT + unitSn;
             if (problematicSnList.Contains(unitSn))
             {
-                text += $" {Constants.WARNING_SIGN}";
+                title += $" {Constants.WARNING_SIGN}";
+                this.tipCorruptedData.SetToolTip(this.lblTitle, Constants.WARNING_CORRUPTED_DATA);
             }
-            this.lblTitle.Text = text;
+            this.lblTitle.Text = title;
 
             // Selected row.
             List<string> selectedRow = allSnTests[selectionIndex];
@@ -510,5 +498,37 @@ namespace genasys_test_viewer
 
         }
 
+        bool isProblematic(List<string> row)
+        {
+            // Initialization of isProblematic boolean variable.
+            bool isProblematic = false;
+
+            // When data in rows have empty strings, disregarding the "Remarks" field.
+            row.RemoveAt(row.Count - 1);
+            if (row.Contains(""))
+            {
+                isProblematic = true;
+            }
+
+            // Checking each field individually.
+            for (int i = 0; i < row.Count; i++)
+            {
+                string item = row[i];
+                switch(i)
+                {
+                    case Constants.UNIT_SN_COL_NUM:
+                        if (!new Regex("\b\\d{10}\b").IsMatch(item)) isProblematic = true;
+                        break;
+                    case Constants.OP_COL_NUM:
+                        if (!new Regex("[a-zA-Z/]+").IsMatch(item.ToUpper())) isProblematic = true;
+                        break;
+                    case Constants.DATE_COL_NUM:
+                        if (!new Regex("").IsMatch(item)) isProblematic = true;
+                        break;
+                }
+            }
+
+            return isProblematic;
+        }
     }
 }
