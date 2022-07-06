@@ -216,6 +216,8 @@ namespace genasys_test_viewer
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel2.AutoScroll = true;
             this.tableLayoutPanel2.AutoSize = true;
             this.tableLayoutPanel2.ColumnCount = 3;
