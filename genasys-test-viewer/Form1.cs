@@ -422,7 +422,7 @@ namespace genasys_test_viewer
                 }
             }
 
-            // Get and set column 3 data (Driver SN).
+            // Get and set column 3 data (driver SN).
             for (int i = 0; i < driverSnColNums.Count; i++)
             {
                 string lblHeader = GetHeaderStrFromColNum(driverSnColNums[i]);
