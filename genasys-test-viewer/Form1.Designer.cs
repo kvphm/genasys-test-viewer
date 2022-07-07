@@ -549,7 +549,6 @@ namespace genasys_test_viewer
         private List<int> compSnColNums;
         private List<int> driverSnColNums;
         private List<int> passFailColNums;
-        private List<string> problematicSnList;
 
         private System.Windows.Forms.TextBox txtUnitSnValue;
         private System.Windows.Forms.Label lblUnitSnHeader;

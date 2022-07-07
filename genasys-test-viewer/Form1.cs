@@ -178,13 +178,8 @@ namespace genasys_test_viewer
                 string date = allSnTests[i][Constants.DATE_COL_NUM];
                 string time = allSnTests[i][Constants.TIME_COL_NUM];
 
-                // Format text and add a new row to the listbox.
-                string text = $"{date} {time} - {status}";
-                if (problematicSnList.Contains(unitSn))
-                {
-                    text += $" {Constants.WARNING_SIGN}";
-                }
-                this.listBox1.Items.Add(text);
+                // Add item to listbox.
+                this.listBox1.Items.Add($"{date} {time} - {status}");
             }
         }
 
@@ -265,7 +260,7 @@ namespace genasys_test_viewer
             {
                 if (allSnTests.Count == 0) continue;
                 else if (
-                    !new Regex("Driver\\d SN").IsMatch(headerRow[i]) &&
+                    !new Regex($"Driver\\d SN").IsMatch(headerRow[i]) &&
                     !allSnTests.Last()[i].Equals(Constants.LBL_PASSED) &&
                     !allSnTests.Last()[i].Equals(Constants.LBL_FAILED) &&
                     !allSnTests.Last()[i].Equals(Constants.LBL_NT)
@@ -283,15 +278,17 @@ namespace genasys_test_viewer
             this.driverSnColNums = new List<int>();
             for (int i = 0; i < headerRow.Length; i++)
             {
-                if (new Regex("Driver\\d SN").IsMatch(headerRow[i]))
+                if (new Regex($"Driver\\d SN").IsMatch(headerRow[i]))
                 {
                     this.driverSnColNums.Add(i);
                 }
             }
 
             // Set miscellaneous data.
-            this.softwareColNum = headerRow.Length - 2;
-            this.remarksColNum = headerRow.Length - 1;
+            this.softwareColNum = Array.IndexOf(headerRow, Constants.CHT_HEADER_SOFTWARE_VER);
+            this.remarksColNum = Array.IndexOf(headerRow, Constants.CHT_HEADER_REMARKS);
+
+
         }
 
         // Get header string from column number.
@@ -312,7 +309,6 @@ namespace genasys_test_viewer
         {
             List<List<string>> allTestsFromSn = new List<List<string>>();
             if (unitSn.Trim() != Constants.CHT_HEADER_UNIT_SN) {
-                this.problematicSnList = new List<string>();
                 using (var reader = new StreamReader(@Constants.PATH))
                 {
                     int unitSnCol = Constants.UNIT_SN_COL_NUM;
@@ -331,8 +327,6 @@ namespace genasys_test_viewer
                         {
                             // Append empty strings if there are missing fields at end.
                             int headerRowSize = File.ReadLines(Constants.PATH).First().Split(',').Length;
-                            Console.WriteLine(File.ReadLines(Constants.PATH).First());
-                            return null;
                             int selectedRowSize = row.Count;
                             int elementsNeeded = headerRowSize - selectedRowSize;
                             if (elementsNeeded > 0) {
@@ -340,14 +334,6 @@ namespace genasys_test_viewer
                                 {
                                     row.Add("");
                                 }
-                            }
-
-                            Console.WriteLine(elementsNeeded);
-
-                            // Problematic SNs will be added to problematicSnList.
-                            if (isProblematic(row))
-                            {
-                                problematicSnList.Add(unitSn);
                             }
                             
                             // Add row into list of rows once data have been collected and parsed.
@@ -369,11 +355,6 @@ namespace genasys_test_viewer
             // Set title.
             this.unitSn = allSnTests[selectionIndex][Constants.UNIT_SN_COL_NUM];
             string title = Constants.LBL_UNIT + unitSn;
-            if (problematicSnList.Contains(unitSn))
-            {
-                title += $" {Constants.WARNING_SIGN}";
-                this.tipCorruptedData.SetToolTip(this.lblTitle, Constants.WARNING_CORRUPTED_DATA);
-            }
             this.lblTitle.Text = title;
 
             // Selected row.
@@ -498,37 +479,5 @@ namespace genasys_test_viewer
 
         }
 
-        bool isProblematic(List<string> row)
-        {
-            // Initialization of isProblematic boolean variable.
-            bool isProblematic = false;
-
-            // When data in rows have empty strings, disregarding the "Remarks" field.
-            row.RemoveAt(row.Count - 1);
-            if (row.Contains(""))
-            {
-                isProblematic = true;
-            }
-
-            // Checking each field individually.
-            for (int i = 0; i < row.Count; i++)
-            {
-                string item = row[i];
-                switch(i)
-                {
-                    case Constants.UNIT_SN_COL_NUM:
-                        if (!new Regex("\b\\d{10}\b").IsMatch(item)) isProblematic = true;
-                        break;
-                    case Constants.OP_COL_NUM:
-                        if (!new Regex("[a-zA-Z/]+").IsMatch(item.ToUpper())) isProblematic = true;
-                        break;
-                    case Constants.DATE_COL_NUM:
-                        if (!new Regex("").IsMatch(item)) isProblematic = true;
-                        break;
-                }
-            }
-
-            return isProblematic;
-        }
     }
 }
