@@ -19,15 +19,6 @@ namespace genasys_test_viewer
         {
             // Component initialization.
             InitializeComponent();
-
-            // Reads a CSV file and puts all tests in List<List<string>>
-            this.allSnTests = getAllTests();
-
-            // Finds and set the column numbers for all of the designated headers.
-            SetColNums();
-
-            // Finds and set the index that has errors.
-            SetHasErrors();
         }
 
         /* ---------------------------------- Events ---------------------------------- */
@@ -46,11 +37,17 @@ namespace genasys_test_viewer
             // Clear panel 2.
             ClearPanel2();
 
+            // Reads a CSV file and puts all tests in List<List<string>>
+            this.allSnTests = GetAllTests();
+
+            // Finds and set the column numbers for all of the designated headers.
+            SetColNums();
+
             // Add items to listbox.
             AddItemsToListBox(unitSn);
 
             // Display number of tests found for that particular unit SN.
-            this.lblResultNum.Text = unitSnTestsRowNums.Count + Constants.LBL_TESTS_FOUND;
+            this.lblResultNum.Text = allSnTests.Count + Constants.LBL_TESTS_FOUND;
         }
 
         // Triggers when a new row has been selected in the listbox.
@@ -170,36 +167,22 @@ namespace genasys_test_viewer
         // Add items to list box.
         private void AddItemsToListBox(string unitSn)
         {
-            // List of row numbers that matches unit SN.
-            unitSnTestsRowNums = new List<int>();
+            // Iterating through each test in List<List<string>>.
             for (int i = 0; i < allSnTests.Count; i++)
             {
-                if (allSnTests[i][Constants.UNIT_SN_COL_NUM] == unitSn)
-                {
-                    unitSnTestsRowNums.Add(i);
-                }
-            }
-
-            // Iterating through each test in List<List<string>>.
-            foreach (var x in unitSnTestsRowNums)
-            {
                 // Determines if test has passed or failed from data.
-                string status = allSnTests[x][Constants.UNIT_PASS_FAIL_COL_NUM].Equals(Constants.LBL_PASSED)
+                string status = allSnTests[i][Constants.UNIT_PASS_FAIL_COL_NUM].Equals(Constants.LBL_PASSED)
                     ? Constants.LBL_PASSED
                     : Constants.LBL_FAILED;
 
                 // Find date and time for each row in listbox.
-                string date = allSnTests[x][Constants.DATE_COL_NUM];
-                string time = allSnTests[x][Constants.TIME_COL_NUM];
+                string date = allSnTests[i][Constants.DATE_COL_NUM];
+                string time = allSnTests[i][Constants.TIME_COL_NUM];
 
                 // Add item to listbox.
-                string text = $"{date} {time} - {status}";
-                if (hasErrorsColNums.Contains(x))
-                {
-                    text += $" {Constants.WARNING_SIGN}";
-                }
                 this.listBox1.Items.Add($"{date} {time} - {status}");
             }
+            return;
         }
 
         private void ClearPanel2()
@@ -251,6 +234,10 @@ namespace genasys_test_viewer
 
             // Column 0 - 6 have been assigned in Constants.
 
+            // Set miscellaneous data.
+            this.softwareColNum = Array.IndexOf(headerRow, Constants.CHT_HEADER_SOFTWARE_VER);
+            this.remarksColNum = Array.IndexOf(headerRow, Constants.CHT_HEADER_REMARKS);
+
             // Sets P/F.
             this.passFailColNums = new List<int>();
             bool wasInPfRegion = false;
@@ -288,7 +275,7 @@ namespace genasys_test_viewer
                     wasInSnRegion = true;
                     this.compSnColNums.Add(i);
                 }
-                else if (wasInSnRegion) {
+                else if (wasInSnRegion || passFailColNums.Contains(i)) {
                     break;
                 }
             }
@@ -302,11 +289,6 @@ namespace genasys_test_viewer
                     this.driverSnColNums.Add(i);
                 }
             }
-
-            // Set miscellaneous data.
-            this.softwareColNum = Array.IndexOf(headerRow, Constants.CHT_HEADER_SOFTWARE_VER);
-            this.remarksColNum = Array.IndexOf(headerRow, Constants.CHT_HEADER_REMARKS);
-
 
         }
 
@@ -324,7 +306,7 @@ namespace genasys_test_viewer
         }
 
         // Compiles all tests from a given unit SN into a List<List<String>>.
-        private List<List<string>> getAllTests()
+        private List<List<string>> GetAllTests()
         {
             List<List<string>> allTestsFromSn = new List<List<string>>();
             using (StreamReader reader = new StreamReader(@Constants.PATH))
@@ -339,23 +321,28 @@ namespace genasys_test_viewer
                     line = reader.ReadLine();
                     var values = line.Split(';');
                     List<String> row = values[0].Split(',').ToList();
+                    
+                    if (row[Constants.UNIT_SN_COL_NUM].Trim() == unitSn)
+                    {
+                        // Append empty strings if there are missing fields at end.
+                        int headerRowSize = File.ReadLines(Constants.PATH).First().Split(',').Length;
+                        int selectedRowSize = row.Count;
+                        int elementsNeeded = headerRowSize - selectedRowSize;
 
-                    // Append empty strings if there are missing fields at end.
-                    int headerRowSize = File.ReadLines(Constants.PATH).First().Split(',').Length;
-                    int selectedRowSize = row.Count;
-                    int elementsNeeded = headerRowSize - selectedRowSize;
-                    if (elementsNeeded > 0) {
-                        for (int i = 0; i < elementsNeeded; i++)
-                        {
-                            row.Add("");
+                        if (elementsNeeded > 0) {
+                            for (int i = 0; i < elementsNeeded; i++)
+                            {
+                                row.Add("");
+                            }
                         }
-                    }
 
-                    // Add row into list of rows once data have been collected and parsed.
-                    allTestsFromSn.Add(new List<string>(row)); 
+                        // Add row into list of rows once data have been collected and parsed.
+                        allTestsFromSn.Add(new List<string>(row));
+                    }
                 }
             }
-            // To make list of tests ordered as latest first.
+
+            // Reverse list so that latest will be at the top.
             allTestsFromSn.Reverse();
 
             // Return test data for selected unit SN.
@@ -383,13 +370,13 @@ namespace genasys_test_viewer
             string remarks = selectedRow[remarksColNum];
 
             // If field is not empty, set column 1 data (general info).
-            if (op.Trim() != "") this.lblOperator.Text = Constants.CHT_HEADER_OPERATOR + Constants.COLON + op.ToUpper();
-            if (date.Trim() != "") this.lblDate.Text = Constants.CHT_HEADER_DATE + Constants.COLON + date;
-            if (time.Trim() != "") this.lblTime.Text = Constants.CHT_HEADER_TIME + Constants.COLON + time;
-            if (woNum.Trim() != "") this.lblWoNum.Text = Constants.CHT_HEADER_WO_NUM + Constants.COLON + woNum;
-            if (model.Trim() != "") this.lblModel.Text = Constants.CHT_HEADER_MODEL + Constants.COLON + model;
-            if (softwareVer.Trim() != "") this.lblSoftwareVer.Text = Constants.CHT_HEADER_SOFTWARE_VER + Constants.COLON + softwareVer;
-            if (remarks.Trim() != "") this.lblRemarks.Text = Constants.CHT_HEADER_REMARKS + Constants.COLON + remarks;
+            this.lblOperator.Text = Constants.CHT_HEADER_OPERATOR + Constants.COLON + op.ToUpper();
+            this.lblDate.Text = Constants.CHT_HEADER_DATE + Constants.COLON + date;
+            this.lblTime.Text = Constants.CHT_HEADER_TIME + Constants.COLON + time;
+            this.lblWoNum.Text = Constants.CHT_HEADER_WO_NUM + Constants.COLON + woNum;
+            this.lblModel.Text = Constants.CHT_HEADER_MODEL + Constants.COLON + model;
+            this.lblSoftwareVer.Text = Constants.CHT_HEADER_SOFTWARE_VER + Constants.COLON + softwareVer;
+            this.lblRemarks.Text = Constants.CHT_HEADER_REMARKS + Constants.COLON + remarks;
 
             // Get and set column 2 data (component SN).
             for (int i = 0; i < compSnColNums.Count; i++)
@@ -488,50 +475,6 @@ namespace genasys_test_viewer
                 if (lblValue.Trim() == "") continue;
                 string label = lblHeader + Constants.COLON + lblValue;
                 nodeRoot.Nodes.Add(new System.Windows.Forms.TreeNode(Constants.TREE_SPACING + label));
-            }
-        }
-        void SetHasErrors()
-        {
-            hasErrorsColNums = new List<int>();
-            for (int i = 0; i < allSnTests.Count; i++)
-            {
-                // Initialize hasErrors as false.
-                bool hasErrors = false;
-
-                // The row of the selection index.
-                List<string> test = allSnTests[i];
-
-                if (
-                    // Unit SN must be all numbers.
-                    !new Regex($"(?!^\\d+$)^.+$").IsMatch(test[Constants.UNIT_SN_COL_NUM]) &&
-
-                    // Date must be in format MM/DD/YYYY.
-                    !new Regex("^\\d{2}\\/\\d{2}\\/\\d{4}$").IsMatch(test[Constants.DATE_COL_NUM]) &&
-
-                    // Time must be in format HH:MM
-                    !new Regex("^([0 - 1]?[0 - 9] | 2[0 - 3]):[0 - 5][0 - 9]$").IsMatch(test[Constants.TIME_COL_NUM])
-                )
-                {
-                    hasErrors = true;
-                }
-
-                // If the P/F columns does not have the values of PASSED, FAILED, or NT that means that there are errors.
-                for (int j = 0; j < test.Count; j++)
-                {
-                    if (
-                        passFailColNums.Contains(j) &&
-                        allSnTests[i][j].Equals(Constants.LBL_PASSED) ||
-                        allSnTests[i][j].Equals(Constants.LBL_FAILED) ||
-                        allSnTests[i][j].Equals(Constants.LBL_NT)
-                    )
-                    {
-                        hasErrors = true;
-                    }
-                }
-                if (hasErrors)
-                {
-                    hasErrorsColNums.Add(i);
-                }
             }
         }
     }
