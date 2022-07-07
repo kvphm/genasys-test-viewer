@@ -9,7 +9,7 @@ namespace genasys_test_viewer
     static class Constants
     {
         // Path of the CSV file.
-        public const string PATH = "Z:\\Kevin Pham\\1950XL Test Log (Post-Test).csv";
+        public const string PATH = "Z:\\Kevin Pham\\LRAD-RX Test Log (Post-Test).csv";
 
         // Error messages.
         public const string ERR_1 = " column cannot be found";
