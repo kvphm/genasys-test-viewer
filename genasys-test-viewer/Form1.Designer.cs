@@ -39,6 +39,7 @@ namespace genasys_test_viewer
             this.lblResultNum = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.testTreeView = new System.Windows.Forms.TreeView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -70,14 +71,13 @@ namespace genasys_test_viewer
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnResize = new System.Windows.Forms.Button();
             this.tipCorruptedData = new System.Windows.Forms.ToolTip(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUnitSnValue
@@ -173,6 +173,17 @@ namespace genasys_test_viewer
             this.listBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox1_DrawItem);
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(-55, 6);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(386, 88);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
@@ -198,10 +209,10 @@ namespace genasys_test_viewer
             this.testTreeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.testTreeView.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
             this.testTreeView.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.testTreeView.Location = new System.Drawing.Point(9, 344);
+            this.testTreeView.Location = new System.Drawing.Point(9, 558);
             this.testTreeView.Name = "testTreeView";
             this.testTreeView.Scrollable = false;
-            this.testTreeView.Size = new System.Drawing.Size(561, 402);
+            this.testTreeView.Size = new System.Drawing.Size(561, 188);
             this.testTreeView.TabIndex = 26;
             this.testTreeView.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.testTreeView_DrawNode);
             // 
@@ -502,17 +513,6 @@ namespace genasys_test_viewer
             this.btnResize.UseVisualStyleBackColor = true;
             this.btnResize.Click += new System.EventHandler(this.btnResize_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-55, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(386, 88);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
             // formGenasysTestViewer
             // 
             this.AcceptButton = this.btnSearch;
@@ -532,12 +532,13 @@ namespace genasys_test_viewer
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         #endregion
@@ -549,6 +550,8 @@ namespace genasys_test_viewer
         private List<int> compSnColNums;
         private List<int> driverSnColNums;
         private List<int> passFailColNums;
+        private List<int> hasErrorsColNums;
+        private List<int> unitSnTestsRowNums;
 
         private System.Windows.Forms.TextBox txtUnitSnValue;
         private System.Windows.Forms.Label lblUnitSnHeader;
