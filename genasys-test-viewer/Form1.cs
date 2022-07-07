@@ -154,7 +154,7 @@ namespace genasys_test_viewer
                 this.btnResize.Text = Constants.MINIMIZE;
                 this.splitContainer1.Panel1Collapsed = false;
             }
-            // When panel 1 is not collapsed.
+            // When panel 1 is not collapsed and button is pressed.
             else
             {
                 this.btnResize.Text = Constants.MAXIMIZE;
