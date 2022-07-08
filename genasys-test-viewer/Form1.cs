@@ -71,14 +71,14 @@ namespace genasys_test_viewer
 
         // Triggers when the listbox is drawn.
         private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
-        { 
+        {
             // Draws background of listbox.
             e.DrawBackground();
 
             // Sets selection to white smoke.
-            Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
-                ? Brushes.WhiteSmoke
-                : new SolidBrush(e.BackColor);
+            Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) ?
+              Brushes.WhiteSmoke :
+              new SolidBrush(e.BackColor);
             e.Graphics.FillRectangle(brush, e.Bounds);
 
             // Test passed = green. Test failed = red.
@@ -86,11 +86,11 @@ namespace genasys_test_viewer
             string text = ((ListBox)sender).Items[e.Index].ToString();
             brush = text.Contains(Constants.LBL_PASSED) ? Brushes.Green : Brushes.Red;
             e.Graphics.DrawString(
-                text,
-                e.Font,
-                brush,
-                e.Bounds,
-                StringFormat.GenericDefault
+              text,
+              e.Font,
+              brush,
+              e.Bounds,
+              StringFormat.GenericDefault
             );
             e.DrawFocusRectangle();
 
@@ -112,7 +112,7 @@ namespace genasys_test_viewer
             texts[1] = e.Node.Text.Split(' ').Last();
 
             // Color parts of string.
-            using (Font font = new Font(new System.Drawing.Font("Microsoft Sans Serif", 16F), FontStyle.Regular))
+            using (Font font = new Font(new System.Drawing.Font("Microsoft Sans Serif", 16 F), FontStyle.Regular))
             {
                 // First part of the string will have the default black color.
                 using (Brush brush = new SolidBrush(Color.Black))
@@ -122,7 +122,7 @@ namespace genasys_test_viewer
 
                 // Second part of the string will have a color depending on the test verdict.
                 Color color;
-                switch(texts[1].ToString())
+                switch (texts[1].ToString())
                 {
                     case Constants.LBL_PASSED:
                         color = Color.Green;
@@ -163,7 +163,7 @@ namespace genasys_test_viewer
         }
 
         /* ----------------------------- Helper Functions ----------------------------- */
-        
+
         // Add items to list box.
         private void AddItemsToListBox(string unitSn)
         {
@@ -171,9 +171,9 @@ namespace genasys_test_viewer
             for (int i = 0; i < allSnTests.Count; i++)
             {
                 // Determines if test has passed or failed from data.
-                string status = allSnTests[i][Constants.UNIT_PASS_FAIL_COL_NUM].Equals(Constants.LBL_PASSED)
-                    ? Constants.LBL_PASSED
-                    : Constants.LBL_FAILED;
+                string status = allSnTests[i][Constants.UNIT_PASS_FAIL_COL_NUM].Equals(Constants.LBL_PASSED) ?
+                  Constants.LBL_PASSED :
+                  Constants.LBL_FAILED;
 
                 // Find date and time for each row in listbox.
                 string date = allSnTests[i][Constants.DATE_COL_NUM];
@@ -245,9 +245,9 @@ namespace genasys_test_viewer
             {
                 if (allSnTests.Count == 0) continue;
                 else if (
-                    allSnTests.Last()[i].Equals(Constants.LBL_PASSED) ||
-                    allSnTests.Last()[i].Equals(Constants.LBL_FAILED) ||
-                    allSnTests.Last()[i].Equals(Constants.LBL_NT)
+                  allSnTests.Last()[i].Equals(Constants.LBL_PASSED) ||
+                  allSnTests.Last()[i].Equals(Constants.LBL_FAILED) ||
+                  allSnTests.Last()[i].Equals(Constants.LBL_NT)
                 )
                 {
                     wasInPfRegion = true;
@@ -266,16 +266,17 @@ namespace genasys_test_viewer
             {
                 if (allSnTests.Count == 0) continue;
                 else if (
-                    !new Regex($"Driver\\d SN").IsMatch(headerRow[i]) &&
-                    !allSnTests.Last()[i].Equals(Constants.LBL_PASSED) &&
-                    !allSnTests.Last()[i].Equals(Constants.LBL_FAILED) &&
-                    !allSnTests.Last()[i].Equals(Constants.LBL_NT)
+                  !new Regex($"Driver\\d SN").IsMatch(headerRow[i]) &&
+                  !allSnTests.Last()[i].Equals(Constants.LBL_PASSED) &&
+                  !allSnTests.Last()[i].Equals(Constants.LBL_FAILED) &&
+                  !allSnTests.Last()[i].Equals(Constants.LBL_NT)
                 )
                 {
                     wasInSnRegion = true;
                     this.compSnColNums.Add(i);
                 }
-                else if (wasInSnRegion || passFailColNums.Contains(i)) {
+                else if (wasInSnRegion || passFailColNums.Contains(i))
+                {
                     break;
                 }
             }
@@ -313,7 +314,7 @@ namespace genasys_test_viewer
             {
                 string headerLine = reader.ReadLine();
                 string line;
-                
+
                 // Iterating through each line of .CSV file.
                 while (!reader.EndOfStream)
                 {
@@ -321,7 +322,7 @@ namespace genasys_test_viewer
                     line = reader.ReadLine();
                     var values = line.Split(';');
                     List<String> row = values[0].Split(',').ToList();
-                    
+
                     if (row[Constants.UNIT_SN_COL_NUM].Trim() == unitSn)
                     {
                         // Append empty strings if there are missing fields at end.
@@ -329,7 +330,8 @@ namespace genasys_test_viewer
                         int selectedRowSize = row.Count;
                         int elementsNeeded = headerRowSize - selectedRowSize;
 
-                        if (elementsNeeded > 0) {
+                        if (elementsNeeded > 0)
+                        {
                             for (int i = 0; i < elementsNeeded; i++)
                             {
                                 row.Add("");
@@ -463,7 +465,7 @@ namespace genasys_test_viewer
             // Get test results from selected test.
             string unitPassFail = selectedRow[Constants.UNIT_PASS_FAIL_COL_NUM];
             System.Windows.Forms.TreeNode nodeRoot = new System.Windows.Forms.TreeNode(
-               Constants.CHT_HEADER_PASS_FAIL + Constants.COLON + unitPassFail
+              Constants.CHT_HEADER_PASS_FAIL + Constants.COLON + unitPassFail
             );
             this.testTreeView.Nodes.Add(nodeRoot);
 
